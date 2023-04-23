@@ -65,7 +65,7 @@
                 <div class="col-xs-12 col-md-6">
                     <section class="box ">
                         <header class="panel_header">
-                            <h2 class="title pull-left">Messages</h2>
+                            <h2 class="title pull-left">Recent Messages</h2>
                             <div class="actions panel_actions pull-right">
                                 <a class="box_toggle fa fa-chevron-down"></a>
                                 <a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>
@@ -83,7 +83,7 @@
                                             <h4 class="value p-text mb-0"><i class="fa fa-envelope message green-text has-shadow f-s-20 mr-10"></i><span>New</span></h4>
                                         </div>
                                     </div>
-                                    <div *ngFor="let message of messages" class="relative mb-15">
+                                    <div *ngFor="let message of messages.slice(0,4)" class="relative mb-15">
                                         <div class="round">S</div>
                                         <div class="designer-info">
                                             <h6 class="msg-sender">{{message.sender.username}}</h6>

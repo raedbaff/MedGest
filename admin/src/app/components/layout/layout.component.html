@@ -394,49 +394,54 @@
                 </header>
                 <div class="content-body">    
                     <div class="row"  >
-                        <div class="col-xs-12" *ngFor="let rate of ratings">
+                        <div class="col-xs-12" *ngFor="let rate of ratings.slice(0,4)">
                             <ul class="project-activity list-unstyled mb-0">
                                 <li class="activity-list warning">
                                     <div class="detail-info">
                                         <div class="visit-doc">
-                                            <p class="message" style="text-color:red">
-                                                RATING 
-                                                
-                                            </p>
-                                            <div class="stars" *ngIf="rate.rating==1">
-                                                <i class="fa fa-star"></i>
-                        
-                                              </div>
-                                              <div class="stars" *ngIf="rate.rating==2">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                        
-                                              </div>
-                                              <div class="stars" *ngIf="rate.rating==3">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                        
-                                              </div>
-                                              <div class="stars" *ngIf="rate.rating==4">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                        
-                                              </div>
-                                              <div class="stars" *ngIf="rate.rating==5">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                        
-                                              </div>
-                                            <small class="text-muted">
+                                            
+                                            <div style="display: flex;flex-direction: row;justify-content: flex-start; align-items: center;">
+                                                <h4 style="margin-right: 10px; color: black; font-weight: bold; font-family: cursive;"> {{rate.doctor.username}} :</h4>
+                                                <div class="stars" style="color:orange"  *ngIf="rate.rating==1">
+                                                    <i class="fa fa-star"></i>
+                            
+                                                  </div>
+                                                  <div class="stars" style="color:orange" *ngIf="rate.rating==2">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                            
+                                                  </div>
+                                                  <div class="stars" style="color:orange" *ngIf="rate.rating==3">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                            
+                                                  </div>
+                                                  <div class="stars" style="color:orange" *ngIf="rate.rating==4">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                            
+                                                  </div>
+                                                  
+                                                  <div class="stars" style="color:orange" *ngIf="rate.rating==5">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                            
+                                                  </div>
+
+                                            </div>
+                                            
+                                              
+                                              <div style="margin-bottom: 10px;margin-top: 10px; font-weight: bold;"><small  class="text-muted">
                                                 {{rate.patientNotes}}
-                                            </small>
-                                            <p class="message">
+                                            </small></div>
+                                            
+                                            <p style="font-weight: bold; font-family: cursive;" class="message">
                                                 {{rate.patient.username}}
                                             </p>
                                             

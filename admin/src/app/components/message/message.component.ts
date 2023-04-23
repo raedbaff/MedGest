@@ -3,6 +3,7 @@ import { MessagingService } from 'src/app/services/messaging.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 // import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -36,6 +37,13 @@ export class MessageComponent implements OnInit {
     const message = this.registrationForm.value;
     this.messageService.sendmessage(message).subscribe(
       data => {
+        Swal.fire({
+          title: "Message sent successfully",
+          timer: 1000, // Timer in milliseconds (3 seconds in this example)
+          timerProgressBar: true, // Show the timer progress bar
+          showConfirmButton: false // Hide the "OK" button
+        });
+        
         
       }
         
