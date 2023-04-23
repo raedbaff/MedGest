@@ -1,0 +1,149 @@
+<style>
+    .post-box {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  height: 500px;
+}
+
+.post-image {
+  width: 300px;
+  height:250px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.post-image img {
+  max-width: 100%;
+  height: 100%;
+}
+
+.post-content {
+  flex-grow: 1;
+}
+
+.post-author {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.post-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: black;
+}
+
+.post-description {
+  margin-bottom: 20px;
+  height: 75px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accept-button {
+  background-color: green;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.decline-button{
+    background-color: red;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+
+}
+
+.accept-button:hover {
+  background-color: darkgreen;
+}
+.decline-button:hover{
+    background-color: darkred;
+}
+
+
+
+</style>
+<section id="main-content" class=" ">
+    <div class="wrapper main-wrapper row" >
+
+        <div class='col-xs-12'>
+            <div class="page-title">
+
+                <div class="pull-left">
+                    <!-- PAGE HEADING TAG - START -->
+                    <h1 class="title">Declined Posts</h1>
+                    <!-- PAGE HEADING TAG - END -->
+                </div>
+
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <!-- MAIN CONTENT AREA STARTS -->
+        <div style="text-align: center;" *ngIf="declinedPosts.length==0"><h2 style="font-weight: bold;font-family: cursive;color: darkblue;">no declined posts yet</h2></div>
+        
+
+        <div class="col-lg-4 col-md-6" *ngFor="let post of declinedPosts |paginate:{itemsPerPage:3,currentPage:p}">
+            
+            <section class="box ">
+                <div class="content-body p">
+                    <div class="row">
+                        <div class="post-box" >
+                            
+                            <div class="post-content">
+                              <div class="post-author">{{post.author.username}}</div>
+                              <div class="post-image">
+                                <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{post.photo}}" alt="Post Image">
+                              </div>
+                              <div class="post-title">{{post.title}}</div>
+                              <div class="post-description">{{post.description}}</div>
+                              <h3 style="text-align: center;color: red;font-weight: bold;font-family: cursive;">Declined</h3>
+                            </div>
+                          </div>
+                          
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        
+
+        
+
+        <div class="clearfix"></div>
+
+        <!-- <div class="col-xs-12 mb-30 mt-15">
+            <div class="form-group no-mb text-center">
+                <button type="button" class="btn btn-primary btn-lg gradient-blue" style="width:100%;max-width:300px"> Load more</button>
+            </div>
+        </div> -->
+
+    
+        
+
+        <!-- MAIN CONTENT AREA ENDS -->
+    </div>
+    <pagination-controls style="position: fixed;
+    bottom: 0;
+    left: 260px;
+    width: 100%;
+    padding: 10px;
+    background-color: none;
+    " (pageChange)="p=$event"></pagination-controls>
+</section>
+<!-- END CONTENT -->
+

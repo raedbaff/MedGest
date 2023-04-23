@@ -1,0 +1,201 @@
+
+    <!-- START CONTAINER -->
+    <div class="page-container row-fluid container-fluid">
+
+        <!-- SIDEBAR - START -->
+
+        
+
+        <!-- START CONTENT -->
+        <section id="main-content" class="">
+            <div class="wrapper main-wrapper row" style="">
+
+                <div class="col-xs-12">
+                    <div class="page-title">
+
+                        <div class="pull-left">
+                            <!-- PAGE HEADING TAG - START -->
+                            <h1 class="title">Patient Invoice</h1>
+                            <!-- PAGE HEADING TAG - END -->
+                        </div>
+
+                        <div class="pull-right hidden-xs">
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a routerLink="/home"><i class="fa fa-home"></i>Home</a>
+                                </li>
+                                <li>
+                                    <a routerLink="/home/AllPatients">Patients</a>
+                                </li>
+                            
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <!-- MAIN CONTENT AREA STARTS -->
+
+                <div class="col-xs-12 mb-30">
+                    <div class="add-header-wrapper gradient-blue curved-section text-center">
+                        <h2 class="uppercase bold w-text">Patient Invoice</h2>
+                        <div class="before-text">Patient Invoice</div>
+                        <p class="g-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto magni consequatur excepturi ab veritatis id facere facilis tempora sit amet, consectetur adipisicing elit. Iusto magni.</p>
+                    </div>
+
+                    <div class=" bg-w" >
+                        <div class="col-lg-12">
+                            <section class="box ">
+                                <header class="panel_header">
+                                    <h2 class="title pull-left">Patient Invoice</h2>
+                                    <div class="actions panel_actions pull-right">
+                                        <a class="box_toggle fa fa-chevron-down"></a>
+                                        <a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>
+                                        <a class="box_close fa fa-times"></a>
+                                    </div>
+                                </header>
+                                <div class="content-body">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+
+                                            <!-- start -->
+
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="invoice-head">
+                                                        <div class="col-xs-12 col-md-2 invoice-title">
+                                                            <h2 class="text-center gradient-blue ">Invoice</h2>
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-3 invoice-head-info">
+                                                            <span class="text-muted">
+                                                        Adresse:{{patient.adresse}}<br>
+                                                        P: (123) 456-7890<br>
+                                                    </span>
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-3 invoice-head-info"><span class="text-muted">Order # {{patient.id}}<br>21st October 2023</span></div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <br>
+
+                                                <div class="col-xs-6 invoice-infoblock pull-left">
+                                                    <h4>Billed To:</h4>
+                                                    <address>
+                                                        <h3>{{patient.username}}</h3>
+                                                        <span class="text-muted">1234 Main Street<br>Apt. 34/4B<br>
+                                                            Springfield<br>ST 54321</span>
+                                                    </address>
+                                                </div>
+
+                                                <div class="col-xs-6 invoice-infoblock text-right">
+                                                    <h4>Payment Method:</h4>
+                                                    <address>
+                                                        <h3>Credit Card</h3>
+                                                        <span class="text-muted">Visa ending **** 4242<br>
+                                                           {{patient.email}}</span>
+                                                    </address>
+
+                                                    <div class="invoice-due">
+                                                        <h3 class="text-muted">Total Due:</h3> &nbsp;
+                                                        <h2 class="blue-text">$ {{actualTotal}}</h2>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                                <br>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <h3>Order summary</h3>
+                                                    <br>
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover invoice-table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <td>
+                                                                        <h4>Bill Description</h4></td>
+                                                                    <td class="text-center">
+                                                                        <h4>Price</h4></td>
+                                                                    <td class="text-center">
+                                                                        <h4>Tax/Discount</h4></td>
+                                                                    <td class="text-right">
+                                                                        <h4>Totals</h4></td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody *ngFor="let bill of bills">
+                                                                <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                                                <tr>
+                                                                    <td>{{bill.description}}</td>
+                                                                    <td class="text-center">${{bill.amount}}</td>
+                                                                    <td class="text-center">{{bill.tax}}/{{bill.discount}}</td>
+                                                                    <td class="text-right">${{bill.total}}</td>
+                                                                </tr>
+                                                                
+                                                                
+                                                            </tbody>
+                                                            <tr>
+                                                                <td class="thick-line"></td>
+                                                                <td class="thick-line"></td>
+                                                                <td class="thick-line text-center">
+                                                                    <h4>Subtotal</h4></td>
+                                                                <td class="thick-line text-right">
+                                                                    <h4>${{subtotal}}</h4></td>
+                                                            </tr>
+                                                            <br>
+                                                            
+                                                            
+                                                            
+                                                            <tr>
+                                                                <td class="no-line"></td>
+                                                                <td class="no-line"></td>
+                                                                <td class="no-line text-center">
+                                                                    <h4>VAT</h4></td>
+                                                                <td class="no-line text-right">
+                                                                    <h4>${{vat}}</h4></td>
+                                                            </tr>
+                                                            <br>
+                                                            <tr>
+                                                                <td class="no-line"></td>
+                                                                <td class="no-line"></td>
+                                                                <td class="no-line text-center">
+                                                                    <h4>Total</h4></td>
+                                                                <td class="no-line text-right">
+                                                                    <h3 style="margin:0px;" class="blue-text">${{actualTotal}}</h3></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="clearfix"></div>
+                                            <br>
+
+                                            <div class="row">
+                                                <div class="col-xs-12 text-right">
+                                                    <a href="#" target="_blank" class="btn btn-default btn-md"><i class="fa fa-print"></i> &nbsp; Print </a>
+                                                    <a href="#" target="_blank" class="btn btn-accent gradient-blue btn-md"><i class="fa fa-send"></i> &nbsp; Proceed to payment </a>
+                                                </div>
+                                            </div>
+
+                                            <!-- end -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                    </div>
+                </div>
+
+                
+
+                
+        <!-- MAIN CONTENT AREA ENDS -->
+        </div>
+    </section>
+    </div>

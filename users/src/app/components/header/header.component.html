@@ -1,0 +1,86 @@
+<div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
+      <div class="align-items-center d-none d-md-flex">
+        <i class="bi bi-clock"></i> Monday - Saturday, 8AM to 10PM
+      </div>
+      <div class="d-flex align-items-center">
+        <i class="bi bi-phone"></i> Call us now +216 25 209 919
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <a href="index.html" class="logo me-auto"><img src="assets/img/medical-logo-center-logo-vector-26443645.jpg" style="border-radius: 50%;height: 120px;width: 120px;" alt=""></a>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
+
+      <nav id="navbar" class="navbar order-last order-lg-0 margin" > 
+        <ul>
+          <li><a class="nav-link scrollto " routerLink="/home">Home</a></li>
+          <li><a class="nav-link scrollto" routerLink="/home/about">About</a></li>
+          <li><a class="nav-link scrollto" href="/home/#faq">FAQ</a></li>
+          <li><a class="nav-link scrollto" routerLink="/home/community">Community</a></li>
+          <li><a class="nav-link scrollto" routerLink="/home/services">Medical Fields</a></li>
+          <li><a class="nav-link scrollto" routerLink="/home/cabinets">Medical Cabinets</a></li>
+          <li><a class="nav-link scrollto" routerLink="/home/allDocs">All Doctors</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+      
+          <li class="dropdown" style="margin-left: -20px;">
+            <a style="margin-left: 30px;"><span>{{username}}
+                <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{photo}}" style="border-radius: 50%;overflow: hidden;width: 40px;height: 40px;" alt="Image">
+              </span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a routerLink="/home/myProfile">Profile</a></li>
+              <li><a routerLink="/home/myappointements">My RendezVous</a></li>
+              <li><a routerLink="/MedicalFile/{{id}}">My Medical Files</a></li>
+              <li><a href="#" (click)="logout()">Logout</a></li>
+      
+              <li class="dropdown notifications-dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                   Notifications <i class="fa fa-bell"></i><span style="color:red">{{notificationNumber}}</span>
+                </a>
+                <ul class="dropdown-menu-left" >
+                  <li *ngIf="notificationNumber==0">
+                    <a class="notification-item">
+                      <div class="notification-icon">
+                        <i class="fa fa-envelope"></i>
+                      </div>
+                      <div class="notification-content">
+                        <p class="notification-message">No notifications yet</p>
+                      </div>
+                    </a>
+                  </li>
+                  <li *ngFor="let not of notifications" >
+                    <a class="notification-item" (click)="deleteNot(not.id)">
+                      <div class="notification-icon">
+                        <i class="fa fa-envelope"></i>
+                      </div>
+                      <div class="notification-content">
+                        <p class="notification-message">{{not.content}}</p>
+                        <span class="notification-time">{{not.formattedDate}}</span>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+                
+                
+                
+              </li>
+              
+      
+            </ul>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+      <!-- .navbar -->
+
+      <a routerLink="/home/appointement" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
+      
+      
+
+    </div>
+  </header><!-- End Header -->

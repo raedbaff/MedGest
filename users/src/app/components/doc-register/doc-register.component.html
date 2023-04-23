@@ -1,0 +1,37 @@
+
+<head>
+	<title>Doctor Registration</title>
+</head>
+<body>
+	<div class="background">
+		<div class="form-container">
+			<h2>Doctor Registration</h2>
+			<form [formGroup]="form" (submit)="onsubmit()" action="#" method="POST">
+				<label for="username">Username:</label>
+				<input formControlName="username" type="text" name="username" id="username" required>
+
+				<label for="password">Password:</label>
+				<input formControlName="password" type="password" name="password" id="password" required>
+
+				<label for="email">Email:</label>
+				<input formControlName="email" type="email" name="email" id="email" required>
+
+				<label for="domain-medical">Domain Medical:</label>
+				<select formControlName="domainMedical" name="domain-medical" id="domain-medical" >
+					<option *ngFor="let domain of domains" [value]="domain.id">{{domain.name}}</option>
+					
+				</select>
+
+				<label for="address">Address:</label>
+				<input formControlName="adresse" type="text" name="adresse" id="adresse" required>
+
+				<label for="photo">Photo:</label>
+				<input type="file" name="photo" id="photo" accept="image/*" required (change)="onFileSelect($event)">
+
+				<button type="submit" > Register</button>
+                <a routerLink="/doc/login" class="switch-link">Already have an account ?</a>
+			</form>
+		</div>
+	</div>
+</body>
+

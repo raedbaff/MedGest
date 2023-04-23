@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<title>Medical File for qsqs</title>
+	<style type="text/css">
+		body {
+			font-family: Arial, sans-serif;
+			text-align: center;
+		}
+		h1 {
+			margin-top: 50px;
+			font-size: 32px;
+			font-weight: bold;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			color: #333;
+		}
+		h2 {
+			margin-top: 40px;
+			font-size: 24px;
+			font-weight: bold;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			color: #666;
+		}
+		p {
+			margin-top: 20px;
+			font-size: 18px;
+			line-height: 1.5;
+			color: #333;
+		}
+        .medical-file {
+  border: 5px solid #ccc;
+  padding: 20px;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 355px;
+  max-width: 800px;
+}
+
+.print-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.print-btn img {
+  width: 30px;
+  height:30px;
+  margin-right: 5px;
+}
+
+        .print-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2196f3;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-left: 1000px;
+  margin-top:20px
+}
+
+.print-button i {
+  margin-right: 10px;
+  font-size: 24px;
+}
+.medicalImage{
+    border-radius: 50%;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+}
+        
+	</style>
+</head>
+<body>
+  <div *ngFor="let files of medicalfile">
+    <div class="medical-file" *ngIf="files" >
+      <img class="medicalImage"src="http://127.0.0.1:8088/api/auth/Doctor/files/{{files.patient.photo}}">
+      <h1>Medical File for {{files.patient.username}}</h1>
+      <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;color: green;font-weight: bold;">Created By Doctor : {{files.doctor.username}}</h1>
+      
+      <h2>Medical History:</h2>
+      <p>{{files.medicalHistory}}</p>
+      <h2>Allergies:</h2>
+      <p>{{files.allergies}}</p>
+      <h2>Diagnoses:</h2>
+      <p>{{files.diagnoses}}</p>
+      <h2>Diagnoses Results:</h2>
+      <p>{{files.diagnosesResults}}</p>
+      <h2>Progress Notes:</h2>
+      <p>{{files.progressNotes}}</p>
+      <h2>Next Steps:</h2>
+      <p>{{files.nextSteps}}</p>
+      <button class="print-btn" onclick="window.print()">
+        <img src="assets/printer-with-paper-illustration_138676-2396.webp" alt="Print">
+        Print
+      </button>
+    </div>
+  </div>
+	
+      <div class="medical-file" *ngIf="medicalfile.length==0">
+        Please Wait for your Doctor to Create your Medical File,Request an appointement if you still don't have a doctor
+      </div>
+      
+
+</body>
+</html>

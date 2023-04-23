@@ -1,0 +1,47 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<div class="section-title">
+  <h2 style="font-family: fantasy;">My Appointments</h2>
+  <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;">Here are you confirmed appointements</h4>
+</div>
+
+<table id="example" class="display table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Appointment No</th>
+      <th>Appointment Date</th>
+      <th>Appointement Hour</th>
+      <th>Appointment Reason</th>
+      <th>Patient</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody *ngFor="let rv of rv">
+    <tr>
+      <td>{{rv.id}}</td>
+      <td>{{rv.formattedDate}}</td>
+      <td *ngIf="rv.formattedTime">{{rv.formattedTime}}</td>
+            <td *ngIf="!rv.formattedTime">Not Set</td>
+      <td>{{rv.appointmentReason}}</td>
+      <td><a style="text-decoration: none;color: black;" routerLink="">{{rv.patientName.username}}</a></td>
+      <td *ngIf="rv.done == true">
+        <p style="font-weight:bold;color:green">Done</p>
+      </td>
+      <td *ngIf="rv.done == false">
+        <p style="font-weight: bold;color: blue;">Pending</p>
+      </td>
+      <td>
+        <button *ngIf="rv.done==false" type="button" (click)="finish(rv.id)" class="btn btn-primary" confirm="Are you sure?">Finish</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

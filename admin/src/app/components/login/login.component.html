@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from medash.netlify.app/html/ui-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Mar 2023 11:25:42 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class=" login_page">
+
+    <div class="container-fluid">
+        <div class="login-wrapper row">
+            <div id="login" class="login loginpage col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-0 col-xs-12 col-sm-6 col-lg-6">    
+                <div class="login-form-header">
+                     <img src="assets/icons/padlock.png" alt="login-icon" style="max-width:64px">
+                     <div class="login-header">
+                         <h4 class="bold color-white">Login Now!</h4>
+                         <h4><small>Please enter your credentials to login.</small></h4>
+                     </div>
+                </div>
+               
+                <div class="box login">
+
+                    <div class="content-body" style="padding-top:30px">
+
+                        <form [formGroup]="form" id="msg_validate" action="#" novalidate="novalidate" class="no-mb no-mt">
+                            <div class="row">
+                                <div class="col-xs-12">
+
+                                    <div class="form-group">
+                                        <label class="form-label">Username</label>
+                                        <div class="controls">
+                                            <input formControlName="username" type="text" class="form-control" name="formfield2" placeholder="Username">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Password</label>
+                                        <div class="controls">
+                                            <input formControlName="password"type="text" class="form-control" name="formfield1" placeholder="password">
+                                        </div>
+                                    </div>
+
+                                    <div class="pull-left">
+                                        <button type="button" class="btn btn-primary mt-10 btn-corner right-15" (click)="onSubmit()">Log in</button>
+                                        <a href="ui-register.html" class="btn mt-10 btn-corner signup">Sign up</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <p id="nav">
+                    <a class="pull-left" href="#" title="Password Lost and Found">Forgot password?</a>
+                    <a class="pull-right" href="ui-register.html" title="Sign Up">Sign Up</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT AREA ENDS -->
+    <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
+
+    <!-- CORE JS FRAMEWORK - START -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.easing.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/plugins/pace/pace.min.js"></script>
+    <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/plugins/viewport/viewportchecker.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>');
+    </script>
+    <!-- CORE JS FRAMEWORK - END -->
+
+    <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START -->
+
+    <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
+
+    <!-- CORE TEMPLATE JS - START -->
+    <script src="assets/js/scripts.js"></script>
+    <!-- END CORE TEMPLATE JS - END -->
+
+</body>
+
+
+<!-- Mirrored from medash.netlify.app/html/ui-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Mar 2023 11:25:43 GMT -->
+</html>

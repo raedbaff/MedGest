@@ -1,0 +1,15 @@
+{
+    "/assets/*": {
+      "target": "https://medash.netlify.app",
+      "secure": false,
+      "changeOrigin": true
+      
+    },
+    "/fonts/*": {
+        "target": "https://medash.netlify.app",
+        "secure": false,
+        "changeOrigin": true
+      }
+    
+  }
+  

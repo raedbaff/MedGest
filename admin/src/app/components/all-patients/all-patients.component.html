@@ -1,0 +1,92 @@
+
+<section id="main-content" class=" ">
+    <div class="wrapper main-wrapper row" style=''>
+
+        <div class='col-xs-12'>
+            <div class="page-title">
+
+                <div class="pull-left">
+                    <!-- PAGE HEADING TAG - START -->
+                    <h1 class="title">All patients</h1>
+                    <!-- PAGE HEADING TAG - END -->
+                </div>
+
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <!-- MAIN CONTENT AREA STARTS -->
+
+        <div class="col-lg-4 col-md-6" *ngFor="let patient of datalist|paginate:{itemsPerPage:3,currentPage:p}">
+            <section class="box ">
+                <div class="content-body p">
+                    <div class="row">
+                        <div class="doctors-list patient relative">
+                            <div class="doctors-head relative text-center">
+                                <div class="patient-img img-circle">
+                                    <img *ngIf="patient.photo" src="http://127.0.0.1:8088/api/auth/Doctor/files/{{patient.photo}}" width="100px" height="100px" alt="" class="rad-50 center-block">
+                                    <img *ngIf="!patient.photo" src="assets/images/360_F_97000908_wwH2goIihwrMoeV9QF3BW6HtpsVFaNVM.jpg" width="100px" height="100px" alt="" class="rad-50 center-block">  
+                                    <div class="stutas recent"></div>
+                                </div>
+                                <h3 class="header w-text relative bold">Name : {{patient.username}}</h3>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="patients-info relative" >
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="patient-card has-shadow2">
+                                            <div class="doc-info-wrap">
+                                                <div class="patient-info">
+                                                    <h5 class="bold">{{patient.gender}}</h5>
+                                                    <h6>Patient  Gender</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="patient-card has-shadow2">
+                                            <div class="doc-info-wrap">
+                                                <div class="patient-info">
+                                                    <h5 class="bold">Age: {{patient.age}}</h5>
+                                                    <h6>Years Old</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div><!-- end row -->
+                            
+                            <div class="col-xs-12 mb-30">
+                                <div class="form-group no-mb">
+                                    <button type="button" class="btn btn-primary btn-lg gradient-blue" style="width:100%" style="width:40%"> View Profile</button>
+                                    <button type="button" class="btn btn-primary btn-lg gradient-blue" style="width:100%" style="width:60%" [routerLink]="['/home/invoice',patient.id]"> View Patient Invoice</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        
+
+        
+
+        <div class="clearfix"></div>
+
+        <!-- <div class="col-xs-12 mb-30 mt-15">
+            <div class="form-group no-mb text-center">
+                <button type="button" class="btn btn-primary btn-lg gradient-blue" style="width:100%;max-width:300px"> Load more</button>
+            </div>
+        </div> -->
+
+    
+        
+
+        <!-- MAIN CONTENT AREA ENDS -->
+    </div>
+    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+</section>
+<!-- END CONTENT -->
+

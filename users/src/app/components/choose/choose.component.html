@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Choose Your Role</title>
+    <style>
+      body {
+        background-color: darkblue;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: 'Helvetica Neue', sans-seri
+      }
+      .title {
+        font-size: 2em;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 2em;
+        color: white;
+      }
+      .option {
+        width: 300px;
+        height: 300px;
+        display: inline-block;
+        margin: 0 20px;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+      }
+      .option:hover {
+        transform: scale(1.1);
+      }
+      .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .option-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 20px;
+      }
+      label{
+        margin-top: 10px;
+        font-weight: bolder;
+        color: white;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">MediGest</div>
+      <div class="image-container">
+        <div class="option-container" style="margin-right: 300px;">
+          <a routerLink="/login"><img src="assets/doctena-client-boite.png" class="option"></a>
+          <label >im a patient</label> 
+          
+        </div>
+        <div class="option-container">
+          <a routerLink="/doc/Register"><img src="assets/doctena-medecin-boite.png" class="option"></a>
+          <label>im a doctor</label>
+        </div>
+      </div>
+      <h3 style="margin-top: 70px;color: white;">What are you going to use our site for ?</h3>
+    </div>
+  </body>
+</html>

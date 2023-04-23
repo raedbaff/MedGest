@@ -1,0 +1,246 @@
+<br>
+<br>
+<br>
+<div *ngIf="messagemodal"  class="modal">
+  <div class="modal-content">
+    <h2>Send a Message</h2>
+    <button style="width:10%;margin-left: 90%;background-color: red;border: none;font-weight: bold;color: white;" (click)="closeMessageModal()">close</button>
+    <form [formGroup]="messageform" (ngSubmit)="sendmessage()" action="#" method="post" class="formsg">
+      <div class="message-container" >
+        <div class="message-header">
+          <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{zeDoc?.photo}}" alt="Avatar" class="avatar">
+          <h3 class="username">{{zeDoc?.username}}</h3>
+        </div>
+        <div class="messages" *ngFor="let msg of newmsg">
+          <div class="message received" *ngIf="msg.sender.username==pat">
+            <p class="content">{{msg.content}}</p>
+            <span class="timestamp">{{msg.timestamp}}</span>
+          </div>
+          <div class="message sent" *ngIf="msg.sender.username==zeDoc?.username">
+            <p class="content">{{msg.content}}</p>
+            <span class="timestamp2">{{msg.timestamp}}</span>
+          </div>
+          <!-- more messages -->
+        </div>
+        <div class="message-input">
+          <input type="text" formControlName="content" placeholder="Type your message here...">
+          <button type="submit">Send</button>
+        </div>
+      </div>
+      
+    </form>
+  </div>
+  
+</div>
+<section class="section about-section gray-bg" >
+    <div class="container">
+        <div class="row align-items-center flex-row-reverse">
+            <div class="col-lg-6">
+                <div class="about-text go-to">
+                    <h3 class="dark-color">About Me</h3> 
+                    <!-- <a  routerLink="/home/message/{{userid}}/{{zeDoc.id}}" class="btn btn-primary" style="border-radius: 50px;margin-top: 20px; margin-bottom: 20px; size: 30px;">Message</a> -->
+                    <a class="btn btn-primary" style="border-radius: 50px;color:white;border:none;margin-top: 20px; margin-bottom: 20px; size: 30px;" (click)="openMessageModal(zeDoc.id)">Send message</a>
+                    <h6 class="theme-color lead">A Lead {{zeDoc.domainMedical.name}} Doctor based in {{zeDoc.adresse}}</h6>
+                    <p style="font-weight:bold; font-family: 'Helvetica Neue', sans-serif; margin: 20px 0; padding: 10px; color: #333; background-color: #f7f7f7; animation: pulse 1s infinite;">
+                      {{zeDoc.description}}
+                    </p>
+                  
+                    <style>
+                      .sendmessage{
+                        margin-top: 20px;
+                        margin-bottom: 20px;
+                            background-color: lightblue;
+                            
+                            color: black;
+                            padding: 10px 20px;
+                            border-radius: 5px;
+                            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+                            transition: all 0.3s ease;
+                      }
+                      @keyframes pulse {
+                        0% { transform: scale(1); }
+                        50% { transform: scale(1.05); }
+                        100% { transform: scale(1); }
+                      }
+                    </style>
+                  
+                    <div class="row about-list">
+                        <div class="col-md-6">
+                            
+                            <div class="media">
+                                <label>Age</label>
+                                <p>{{zeDoc.age}} Yr</p>
+                            </div>
+                            
+                            <div class="media">
+                                <label>Address</label>
+                                <p>{{zeDoc.adresse}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label>E-mail</label>
+                                <p>{{zeDoc.email}}</p>
+                            </div>
+                            <div class="media">
+                                <label>Phone</label>
+                                <p>820-885-3321</p>
+                            </div>
+                            <div class="media">
+                                <label>Skype</label>
+                                <p>skype.0404</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-avatar">
+                    <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{zeDoc.photo}}" title="" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="counter">
+            <div class="row">
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2" data-to="500" data-speed="500">{{zeDoc.myPatients.length}}</h6>
+                        <p class="m-0px font-w-600">Happy Patients</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2" data-to="150" data-speed="150">{{points}}</h6>
+                        <p class="m-0px font-w-600">Points</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2" data-to="850" data-speed="850">{{ratingsnumber}}</h6>
+                        <p class="m-0px font-w-600">Ratings</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2" data-to="190" data-speed="190">{{averagerating}}</h6>
+                        <p class="m-0px font-w-600">Average Rating</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container" >
+  <div class="section-title">
+    <h2>Rate doctor</h2>
+    <p>Feel free to rate this doctor, and please avoid vulgar language</p>
+  </div>
+ 
+  
+  <form (ngSubmit)="onsubmit()"style="margin-left:100px">
+    <div class="form-group">
+      <label for="rating">Rating:</label>
+      <ngb-rating [max]="5" [(rate)]="rating" [readonly]="false" class="fuck" style="font-size: 64px;
+      color: #ffbf00;
+      transition: all 0.2s ease-in-out;"></ngb-rating>
+    </div>
+    <div class="form-group">
+      <label for="patientNotes">Patient review:</label>
+      <textarea class="form-control" id="patientNotes" name="patientNotes" [(ngModel)]="patientNotes" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  
+</div>
+
+
+<section  class="testimonials">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Patients Feedback</h2>
+        <p>What do Patients say about Dr:{{zeDoc.username}}</p>
+        <button style="margin-top: 20px; border-radius: 5px;color: white;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;background-color: darkblue;height: 50;width: 100px;" *ngIf="docratings.length > 0 && !showMore" (click)="showAllRatings()">Show all</button>
+        
+          
+      </div>
+      
+      
+      
+      
+
+      <div class="testimonials-slider swiper" *ngIf="showMore; " data-aos="fade-up" data-aos-delay="100">
+        <div class="swiperWrapper" id="swiperWrapper" #swiperWrapper>
+          
+          <div class="swiper-slide">
+            <div class="testimonial-item" *ngFor="let rate of newrates  | paginate: { itemsPerPage: 3, currentPage: p }">
+              
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                {{rate.patientNotes}}
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+              <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{rate.patient.photo}}" class="testimonial-img" alt="">
+              <h3>{{rate.patient.username}}</h3>
+              <h4>Ceo &amp; Founder</h4>
+              <div class="rating">
+                <div class="stars" *ngIf="rate.rating==1">
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"  ></i>
+
+                </div>
+                <div class="stars" *ngIf="rate.rating==2">
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+
+                </div>
+                <div class="stars" *ngIf="rate.rating==3">
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+
+                </div>
+                <div class="stars" *ngIf="rate.rating==4">
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+
+                </div>
+                <div class="stars" *ngIf="rate.rating==5">
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <button style="margin-top: 20px; border-radius: 5px;color: white;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;background-color: darkblue;height: 50;width: 100px; margin-left: 650px;"*ngIf="docratings.length  && showMore" (click)="showAllRatings()">Show less</button>
+        <div class="swiper-pagination"></div>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+      <ng-template #noFeedback >
+        <p style="text-align: center; font-size: 24px; margin-top: 50px; font-weight: bold; color: red !important;">No patient feedback yet.</p>
+      </ng-template>
+      
+      
+      
+
+    </div>
+    
+  </section>
+
+    
+         
+   
+
+  
+
+ 
+
+

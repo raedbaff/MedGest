@@ -1,0 +1,120 @@
+<style>
+  .recommended {
+    margin-top: 20px;
+  color: green;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 5px;
+  width: 200px;
+  animation: glowing 2s ease-in-out infinite;
+}
+.noinfo{
+  margin-top: 20px;
+  color:green;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 5px;
+  width: 200px;
+  animation:glowing 3s ease-in-out infinite
+
+}
+
+.not-recommended {
+  margin-top: 20px;
+  color: red;
+  font-weight: bold;
+  width: 200px;
+  padding: 5px;
+  border-radius: 5px;
+  animation: glowing2 2s ease-in-out infinite;
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.8);
+  }
+}
+@keyframes glowing2 {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 0, 17, 0.8);
+  }
+}
+
+.coloroftheback{
+  background-color: white;
+}
+</style>
+<body class="coloroftheback">
+<section id="doctors" class="doctors section-bg">
+    <div class="container" data-aos="fade-up">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+        
+      <div class="section-title">
+        <h2>All Doctors</h2>
+        <p>These are all the doctors.</p>
+      </div>
+      <div class="filter-container">
+        <button (click)="toggleFilter()" class="btn btn-primary filter-btn">Filter</button>
+        <div class="filter-dropdown" *ngIf="showFilter">
+          <label for="domain-filter">Filter by Medical Domain:</label>
+          <select id="domain-filter" [(ngModel)]="selectedDomain">
+            <option value="">All</option>
+            <option *ngFor="let domain of domains" [value]="domain.name">{{domain.name}}</option>
+          </select>
+          <button (click)="applyFilter()" class="btn btn-primary apply-filter-btn">Apply</button>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" *ngFor="let doc of filteredDocs">
+          <div class="member" data-aos="fade-up" data-aos-delay="100">
+            <div class="member-img">
+              <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{doc.photo}}"  class="img-fluid" alt="">
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info">
+              <a routerLink="/home/doctor/{{doc.id}}"><h4>{{doc.username}}</h4></a>
+              <span style="font-weight: bolder;font-size: 15px;">Specializes in the {{doc.domainMedical.name}} field </span>
+              <span style="color:red">Average Rating: {{averageRating[doc.id]}}</span>
+              <div *ngIf="averageRating[doc.id] > 3;else notRecommendedLabel">
+                <p class="recommended">Recommended </p>
+              </div>
+              <ng-template #notRecommendedLabel>
+                
+                <p class="not-recommended">Not Recommended</p>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+
+    </div>
+  </section>
+</body>

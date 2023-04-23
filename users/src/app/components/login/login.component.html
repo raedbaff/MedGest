@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Form</title>
+	<style>
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 120vh;
+			margin: 0;
+			padding: 0;
+			background-image: url("assets/20499790.jpg");
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			font-family: 'Helvetica Neue', sans-seri
+		}
+
+		form {
+		width: 400px;
+		padding: 30px;
+		background-color: #f7f7f7;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		border-radius: 10px;
+		border: 1px solid #ddd;
+		text-align: center;
+		font-family: cursive;
+	}
+
+	h2 {
+		margin-top: 0;
+		margin-bottom: 30px;
+		color: #444;
+		font-size: 28px;
+		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		font-family: monospace;
+	}
+
+	label {
+		display: block;
+		margin-bottom: 10px;
+		font-weight: bold;
+		color: #333;
+		text-transform: uppercase;
+		font-size: 14px;
+		text-align: left;
+	}
+
+	input[type="text"], input[type="email"], input[type="password"], select {
+		padding: 10px;
+		margin-bottom: 20px;
+		border-radius: 5px;
+		border: 3px solid black;
+		box-shadow: 1px 1px 2px #ccc;
+		width: 100%;
+		font-size: 16px;
+		color: #333;
+	}
+
+	input[type="file"] {
+		margin-bottom: 10px;
+	}
+
+	button[type="submit"] {
+		background-color: darkblue;
+		color: #fff;
+		padding: 10px 20px;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+		font-size: 18px;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		margin-top: 20px;
+		transition: all 0.3s ease-in-out;
+	}
+
+	button[type="submit"]:hover {
+		background-color: lightskyblue;
+		border: none;
+	}
+
+	.switch-link {
+		display: block;
+		margin-top: 20px;
+		text-align: center;
+		color: blue;
+		text-decoration: underline;
+		cursor: pointer;
+		font-size: 14px;
+	}
+
+	.switch-link:hover {
+		color: #0056b3;
+	}
+
+	.error-message {
+		color: red;
+		font-size: 14px;
+		margin-top: 10px;
+	}
+
+
+	</style>
+</head>
+<body>
+	<form [formGroup]="form" (ngSubmit)="onSubmit()" action="#" method="post">
+		<h2>Login Form</h2>
+
+		<label for="username">Username:</label>
+		<input formControlName="username" type="text" id="username" name="username" required placeholder="Enter your username">
+
+		
+
+		<label for="password">Password:</label>
+		<input formControlName="password" type="password" id="password" name="password" required placeholder="Enter your password">
+
+		
+
+		<button type="submit" value="Submit">Login</button>
+		<div *ngIf="errorMessagee" class="alert alert-danger">{{ errorMessagee }}</div>
+
+
+        <a routerLink="/login" class="switch-link">Don't have an account ?</a>
+	</form>
+</body>
+</html>

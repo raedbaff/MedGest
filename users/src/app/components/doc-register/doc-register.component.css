@@ -1,0 +1,76 @@
+.background {
+    background-color: lightcyan;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .switch-link {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.switch-link:hover {
+    color: #0056b3;
+}
+  
+
+  .form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Helvetica Neue', sans-serif;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 20px;
+  }
+  
+
+h2 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+input, select, textarea {
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 5px;
+	border: 2px solid #ccc;
+}
+
+input[type="submit"] {
+	background-color: #428bca;
+	color: #fff;
+	font-size: 1.2em;
+	padding: 10px 20px;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.2s ease-in-out;
+}
+button{
+    background-color: #428bca;
+	color: #fff;
+	font-size: 1.2em;
+	padding: 10px 20px;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.2s ease-in-out;
+}
+
+input[type="submit"]:hover {
+	background-color: #3071a9;
+}

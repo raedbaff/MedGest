@@ -1,0 +1,41 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="section-title">
+    <h2>Messages</h2>
+    
+  </div>
+<form [formGroup]="messageform" (ngSubmit)="sendmessage()" action="#" method="post" class="formsg">
+  <div class="message-container" >
+    <div class="message-header">
+      <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{photo}}" alt="Avatar" class="avatar">
+      <h3 class="username">{{patient2}}</h3>
+    </div>
+    <div class="messages" *ngFor="let msg of newmsg">
+      <div class="message received" *ngIf="msg.sender.username==patient">
+        <p class="content">{{msg.content}}</p>
+        <span class="timestamp">{{msg.timestamp}}</span>
+      </div>
+      <div class="message sent" *ngIf="msg.sender.username==patient2">
+        <p class="content">{{msg.content}}</p>
+        <span class="timestamp">{{msg.timestamp}}</span>
+      </div>
+      <!-- more messages -->
+    </div>
+    <div class="message-input">
+      <input type="text" formControlName="content" placeholder="Type your message here...">
+      <button type="submit">Send</button>
+    </div>
+  </div>
+</form>
+  
+  

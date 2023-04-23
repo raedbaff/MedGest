@@ -1,0 +1,101 @@
+<br>
+<br>
+<br>
+<br>
+<style>
+    .cabinet-info {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  
+}
+.recommended {
+  color: green;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left:300px;
+  width: 200px;
+  animation: glowing 2s ease-in-out infinite;
+}
+
+.not-recommended {
+  color: red;
+  margin-left:300px;
+  font-weight: bold;
+  width: 200px;
+  padding: 5px;
+  border-radius: 5px;
+  animation: glowing2 2s ease-in-out infinite;
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.8);
+  }
+}
+@keyframes glowing2 {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 0, 17, 0.8);
+  }
+}
+
+</style>
+<section id="departments" class="departments">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Medical Cabinets</h2>
+        <p >Here are the list of Cabinets of our doctors.</p >
+      </div>
+
+      <div class="row" data-aos="fade-up" data-aos-delay="100" *ngFor="let cabinet of cabinets">
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <ul class="nav nav-tabs flex-column">
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" [attr.data-bs-target]="'#tab-' + cabinet.id" (click)="toggleTab(cabinet.id)" (click)="getdoc(cabinet.doctor.id)">
+                <h4>{{cabinet.nomCabinet}}</h4>
+                
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-8">
+          <div class="tab-content">
+            <div class="tab-pane" [id]="'tab-' + cabinet.id" [ngClass]="{'active': activeTab === cabinet.id}">
+              <h3>{{cabinet.nomCabinet}}</h3>
+              
+              <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{cabinet.photo}}" alt="" class="img-fluid">
+              <p class="cabinet-info">Doctor: {{cabinet.doctor.username}}</p >
+              <p class="cabinet-info">Secretary: {{cabinet.secretary.email}}</p >
+              <p class="cabinet-info">Adresse: {{cabinet.adresseCabinet}}</p >
+              <p class="cabinet-info">Doctor's Average Rating Rating: {{averagerating}}</p >
+                <div *ngIf="averagerating > 3; else notRecommendedLabel">
+                    <p class="recommended">Recommended</p>
+                  </div>
+                  <ng-template #notRecommendedLabel>
+                    <p class="not-recommended">Not Recommended</p>
+                  </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+
+    </div>
+  </section>

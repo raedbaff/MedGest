@@ -1,0 +1,241 @@
+
+  
+  .message-container {
+    flex: 1;
+    padding: 10px;
+    overflow-y: scroll;
+    width:100%;
+    height:300px;
+    margin-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .message.received {
+    background-color: #f1f0f0;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+  
+  .message:before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #fff;
+  }
+  
+  .message.received:before {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: 10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #f1f0f0;
+  }
+  
+  .message-content {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .timestamp {
+    font-size: 10px;
+    color: #999;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+  }
+  .timestamp2 {
+    font-size: 10px;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+  }
+  
+  .message-input {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .message-input input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px;
+  }
+  
+  .message-input button {
+    background-color: #0084ff;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .message-input button:hover {
+    background-color: #0073e6;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+  }
+  .username {
+    margin: 0 0 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .message-header {
+    display: flex;
+    
+    align-items: center;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+ 
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the label */
+  label {
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+  }
+  
+  /* Style for the input and textarea */
+  input, textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for the submit button */
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-top: 10px;
+  }
+  
+  /* Style for the submit button when disabled */
+  button[type="submit"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .message {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 0px;
+    width: 75%;
+    
+  }
+  
+  .received {
+    background-color: #f5f5f5;
+    align-self: flex-start;
+    display: inline-block;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    text-align: end;
+    
+}
+
+  
+  .sent {
+    background-color: #0084ff;
+    color: #fff;
+    text-align: start;
+    align-self: flex-start;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    
+  }
+  
+  .timestamp {
+    font-size: 12px;
+    color: #666;
+    margin: 5px 0 0;
+    display: block;
+    text-align: right;
+  }
+  .paper-view {
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .sectionn {
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .fieldd {
+    display: flex;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  }
+  
+  .labell {
+    flex: 1;
+    font-weight: bold;
+  }
+  
+  .valuee {
+    flex: 2;
+  }
+  
+    
+  

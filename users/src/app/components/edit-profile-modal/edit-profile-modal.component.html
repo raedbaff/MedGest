@@ -1,0 +1,87 @@
+<!-- EditProfileModalComponent template -->
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<style>
+    form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+label {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+input {
+  width: 300px;
+  height: 40px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+input:focus {
+  border-color: #5bc0de;
+  outline: none;
+}
+
+button {
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  background-color: #5bc0de;
+  color: #fff;
+  font-size: 18px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4aa3c6;
+}
+
+button:active {
+  background-color: #4099b5;
+}
+
+</style>
+<div class="container">
+    <div class="section-title">
+        <h2>Medical Cabinets</h2>
+        <p >Here are the list of Cabinets of our doctors.</p >
+      </div>
+      <form [formGroup]="editform" (ngSubmit)="editProfile()" action="#" method="post">
+        <label>Username:</label>
+        <input formControlName="username" name="username" />
+        <label>Email:</label>
+        <input formControlName="email"  name="email" />
+        <label>Address:</label>
+        <input formControlName="adresse"  name="adresse" />
+        <label>Profession:</label>
+        <input formControlName="profession"  name="profession" />
+        <label>Age:</label>
+        <input formControlName="age" name="age" />
+        <label>Social Account:</label>
+        <input formControlName="socialAccount"  name="socialAccount" />
+        <label>Photo:</label>
+        <img [src]="currentPhotoUrl || 'http://127.0.0.1:8088/api/auth/Doctor/files/' + user.photo" alt="User photo"style="margin-top:50px;width:150px;height:150px">
+        <input type="file" (change)="onFileSelected($event)"/>
+        
+        <button type="submit">Submit Changes</button>
+      </form>
+      
+</div>

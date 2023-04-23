@@ -1,0 +1,51 @@
+<!-- ======= Appointment Section ======= -->
+<br>
+<br>
+<br>
+<br>
+<br>
+<section id="appointment" class="appointment section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Make an Appointment</h2>
+        <p> Choose your doctor and request an appointement and the doctor will reach out as soon as possible</p>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="requestrd()" action="#" method="post">
+        <div class="row">
+        </div>
+        <div class="row">
+          <div class="col-md-4 form-group mt-3">
+            <input type="date" formControlName="appointmentDate" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" required>
+          </div>
+          <div class="col-md-4 form-group mt-3">
+            <input type="time" formControlName="time" name="time" class="form-control" id="time" placeholder="Appointment Time" required>
+          </div>
+          
+          <div class="col-md-4 form-group mt-3">
+            <select name="doctor" id="doctor" class="form-select" formControlName="doctor">
+              <option value="">Select a doctor</option>
+              <option *ngFor="let doc of docs" [value]="doc?.id">{{doc?.username}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <textarea formControlName="appointmentReason" class="form-control" name="message" rows="5" placeholder="Appointement Reason (brief description)"></textarea>
+        </div>
+        <div class="text-center"><button type="submit" style="background-color: #007bff;
+            color: white;
+            background-color: lightgreen;
+            border-radius: 50px;
+            font-weight: bolder;
+            padding: 8px 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin-top: 50px;
+            transition: all 0.3s ease;">Request an Appointment</button></div>
+      </form>
+      
+
+    </div>
+  </section><!-- End Appointment Section -->

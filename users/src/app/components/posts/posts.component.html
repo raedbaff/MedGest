@@ -1,0 +1,66 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="section-title">
+    <h2>Patient community</h2>
+  </div>
+  <div class="container">
+    <h1>Create Post</h1>
+    <form [formGroup]="postform" (ngSubmit)="createPost()" action="#" method="post">
+      <label for="post-title">Title:</label>
+      <input formControlName="title" type="text" id="post-title" name="post-title" placeholder="Enter post title" required>
+
+      <label for="post-description">Description:</label>
+      <textarea formControlName="description" id="post-description" name="post-description" placeholder="Enter post description" rows="5" required></textarea>
+
+      <label for="post-photo">Photo:</label>
+      <input type="file" id="post-photo" name="post-photo" accept="image/*" required (change)="onFileSelect($event)">
+      <br>
+
+      <button type="submit">Create Post</button>
+    </form>
+  </div>
+  <div class="post" *ngFor="let post of posts">
+    <div class="post-header">
+      <img class="author-image" src="http://127.0.0.1:8088/api/auth/Doctor/files/{{post.author.photo}}" alt="Author Image">
+      <div class="author-details">
+        <h3 class="author-name">{{post.author.username}}</h3>
+        <p class="post-date">{{post.timestamp}}</p>
+      </div>
+    </div>
+    <h2 class="post-title">{{post.title}}</h2>
+    <img class="post-image" src="http://127.0.0.1:8088/api/auth/Doctor/files/{{post.photo}}" alt="Post Image">
+    <p class="post-description">{{post.description}}</p>
+    <div style="border-bottom: 1px solid black;margin-bottom: 10px;width:50%">
+      <h5 class="inline-h4 ">{{post.likes.length}} likes</h5>
+    <h5 class="inline-h4 ">{{post.comments.length}} Comments</h5><br>
+    </div>
+    
+    <button  class="like-button" (click)="likeThePost(post.id)">Like </button> 
+    <button class="comments-button" (click)="toggleComments(post)" (click)="getcommentsofAPost(post.id)">Comments</button>
+    <button *ngIf="post.author.username==name" class="delete-button" (click)="deletepost(post.id)">Delete</button>
+    <div class="comments-section" *ngIf="post.commentsVisible">
+      <form class="comment-form" [formGroup]="form" (ngSubmit)="createcomment(post.id)" action="#" method="post">
+        <textarea name="comment" placeholder="Leave a comment" formControlName="content"></textarea>
+        <button type="submit">Post comment</button>
+      </form>
+      <ul class="comment-list">
+        <li class="comment" *ngFor="let comment of comments">
+          <div class="comment-author">
+            <img class="author-image" src="http://127.0.0.1:8088/api/auth/Doctor/files/{{comment.patient.photo}}" alt="{{comment.patient.username}}'s image">
+            <span>{{comment.patient.username}}</span>
+          </div>
+          <span class="comment-text">{{comment.content}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  
+  
+  

@@ -1,0 +1,46 @@
+#profile-image {
+    display: block;
+    margin-bottom: 20px;
+  }
+  
+  #profile-image::before {
+    content: "Choose an image";
+    display: block;
+    background-color: #ddd;
+    color: #444;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  #profile-image:hover::before {
+    background-color: #ccc;
+  }
+  
+  #profile-image:active::before {
+    background-color: #bbb;
+  }
+  
+  #profile-image::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  
+  #profile-image::before {
+    content: "Choose an image";
+    display: block;
+    background-color: #ddd;
+    color: #444;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  #profile-image:hover::before {
+    background-color: #ccc;
+  }
+  
+  

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration Form</title>
+	<style>
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			background-image: url("assets/20499790.jpg");
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			font-family: 'Helvetica Neue', sans-seri
+		}
+
+		form {
+		width: 500px;
+		padding: 30px;
+		background-color: white;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		border-radius: 10px;
+		border: 1px solid #ddd;
+		text-align: center;
+	}
+
+	h2 {
+		margin-top: 0;
+		margin-bottom: 30px;
+		color: #444;
+		font-size: 28px;
+		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		font-family:monospace;
+	}
+
+	label {
+		display: block;
+		margin-bottom: 10px;
+		font-weight: bold;
+		color: #333;
+		text-transform: uppercase;
+		font-size: 14px;
+		text-align: left;
+	}
+
+	input[type="text"], input[type="email"], input[type="password"],input[type="number"], select {
+		padding: 10px;
+		margin-bottom: 20px;
+		border-radius: 5px;
+		border: 3px solid black;
+		box-shadow: 1px 1px 2px #ccc;
+		width: 100%;
+		font-size: 16px;
+		color: #333;
+	}
+
+	input[type="file"] {
+		padding: 10px;
+		margin-bottom: 20px;
+		border-radius: 5px;
+		border: none;
+		box-shadow: 1px 1px 2px #ccc;
+		width: 100%;
+		font-size: 16px;
+		color: #333;
+	}
+
+	button[type="submit"] {
+		background-color: darkblue;
+		color: #fff;
+		padding: 10px 20px;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+		font-size: 18px;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		margin-top: 20px;
+		transition: all 0.3s ease-in-out;
+	}
+
+	button[type="submit"]:hover {
+		background-color: rgb(6, 81, 105);
+		border: none;
+	}
+
+	.switch-link {
+		display: block;
+		margin-top: 20px;
+		text-align: center;
+		color: blue;
+		text-decoration: underline;
+		cursor: pointer;
+		font-size: 14px;
+	}
+
+	.switch-link:hover {
+		color: #0056b3;
+	}
+
+	.error-message {
+		color: red;
+		font-size: 14px;
+		margin-top: 10px;
+	}
+
+
+	</style>
+</head>
+<body>
+	<form [formGroup]="registrationForm" (ngSubmit)="onsubmit()" action="#" method="post">
+		<h2>Registration Form</h2>
+
+		<label for="username">Username:</label>
+		<input formControlName="username" type="text" id="username" name="username" required placeholder="Enter your username">
+
+		<label for="email">Email:</label>
+		<input formControlName="email" type="email" id="email" name="email" required placeholder="Enter your Email">
+
+		<label for="password">Password:</label>
+		<input formControlName="password" type="password" id="password" name="password" required placeholder="Enter your password">
+
+		<label for="adresse">Address:</label>
+		<input formControlName="adresse" type="text" id="adresse" name="adresse" required placeholder="Enter your adresse">
+
+		<label for="age">Age:</label>
+		<input formControlName="age" type="number" id="age" name="age" min="1" max="120" required placeholder="Enter your age">
+
+		<label for="gender">Gender:</label>
+		<select formControlName="gender" id="gender" name="gender" required  >
+			<option style="color:#888;font-weight: bold;" disabled selected>Select your gender</option>
+			<option value="Male">Male</option>
+			<option value="Female">Female</option>
+		</select>
+
+		<label for="social">Social Account:</label>
+		<input formControlName="socialAccount" type="text" id="social" name="social" placeholder="Enter your social account">
+
+		<label for="profile-image">Profile Image:</label>
+		<input type="file" id="profile-image"  (change)="onFileSelect($event)" placeholder="Upload your profile photo">
+
+		<button type="submit" value="Submit">Register</button>
+        <a routerLink="/register" class="switch-link">Already have an account ?</a>
+	</form>
+</body>
+</html>

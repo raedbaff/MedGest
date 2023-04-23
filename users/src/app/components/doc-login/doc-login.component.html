@@ -1,0 +1,25 @@
+
+<head>
+	<title>Doctor Registration</title>
+</head>
+<body>
+	<div class="background">
+		<div class="form-container">
+			<h2>Doctor Login</h2>
+			<form [formGroup]="form" (submit)="onsubmit()" action="#" method="POST">
+				<label for="username">Username:</label>
+				<input formControlName="username" type="text" name="username" id="username" required>
+
+				<label for="password">Password:</label>
+				<input formControlName="password" type="password" name="password" id="password" required>
+
+				
+
+				<button type="submit"> Login</button>
+                <a routerLink="/doc/Register" class="switch-link">No account ? Register here</a>
+				<a routerLink="/sec/login" class="switch-link">Im a Secretary ! take me to login page</a>
+			</form>
+		</div>
+	</div>
+</body>
+

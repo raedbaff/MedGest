@@ -1,0 +1,261 @@
+<style>
+    .patient-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 3px solid #ccc;
+  max-width: 80%;
+  padding: 10px;
+  margin: 0 auto; /* add this to center horizontally */
+  margin-top: 50px; /* add this to center vertically */
+}
+
+
+.patient {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  width: 250px;
+}
+
+.patient img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.patient h3 {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+.patient p {
+  font-size: 0.9em;
+  margin: 0;
+}
+/* The Modal (background) */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.modal-content2 {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+
+/* Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.patient-info{
+  margin-left: 60px;
+}
+
+
+</style>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<body>
+	
+  <div class="section-title">
+    <h2 style="font-family: fantasy;">My patients</h2>
+    <div *ngIf="messageModalOpen"  class="modal">
+      <div class="modal-content">
+        <h2>Send a Message</h2>
+        <button style="width:10%;margin-left: 90%;background-color: red;border: none;font-weight: bold;color: white;" (click)="closeMessageModal()">close</button>
+        <form [formGroup]="messageform" (ngSubmit)="sendmessage()" action="#" method="post" class="formsg">
+          <div class="message-container" >
+            <div class="message-header">
+              <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{theactualdoc.photo}}" alt="Avatar" class="avatar">
+              <h3 class="username">{{theactualdoc.username}}</h3>
+            </div>
+            <div class="messages" *ngFor="let msg of newmsg">
+              <div class="message received" *ngIf="msg.sender.username==patient">
+                <p class="content">{{msg.content}}</p>
+                <span class="timestamp">{{msg.timestamp}}</span>
+              </div>
+              <div class="message sent" *ngIf="msg.sender.username==theactualdoc.username">
+                <p class="content">{{msg.content}}</p>
+                <span class="timestamp2">{{msg.timestamp}}</span>
+              </div>
+              <!-- more messages -->
+            </div>
+            <div class="message-input">
+              <input type="text" formControlName="content" placeholder="Type your message here...">
+              <button type="submit">Send</button>
+            </div>
+          </div>
+          
+        </form>
+      </div>
+      
+    </div>
+    
+    
+  </div>
+	<div class="patient-container">
+        <div class="patient" *ngFor="let doc of docs">
+          <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{doc.photo}}" alt="Patient 1">
+          <div class="patient-info">
+            <h3 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;font-weight: bold;">{{doc.username}}</h3>
+            <p>Email: {{doc.email}}</p>
+            <p>Gender: {{doc.gender}}</p>
+            <button (click)="openMessageModal(doc.id)" style="border: none;color: blue;font-weight: bold;margin-top: 5px;">Message</button><br>
+            <button (click)="openMedicalFileModal(doc.id)" style="border: none;color: red;font-weight: bold;margin-top: 5px;">Create Medical File</button>
+            <button  (click)="openMedicalFile(doc.id)" style="border: none;color: darkgreen;font-weight: bold;margin-top: 5px;">View Medical File</button>
+          </div>
+        </div>
+        
+        <!-- Add more patient divs as needed -->
+      </div>
+      <div  *ngIf="MedicalFileModalOpen"  class="modal" >
+        <div class="modal-content">
+          <h2>Create Medical File</h2>
+          <button style="width:10%;margin-left: 90%;background-color: red;border: none;font-weight: bold;color: white;" (click)="closeMessageModal()">close</button>
+          <form [formGroup]="medicalform" (ngSubmit)="submitMedicalFile()" action="#" method="post" class="formsg">
+            <div class="message-container">
+              <div class="message-header">
+                <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{patientToCreateMedicalFileFor?.photo}}" alt="Avatar" class="avatar">
+                <h3 class="username">{{patientToCreateMedicalFileFor?.username}}</h3>
+              </div>
+              
+              <div class="form-group">
+                <label for="medicalHistory">Medical History:</label>
+                <textarea formControlName="medicalHistory" id="medicalHistory" name="medicalHistory" placeholder="Enter medical history" required></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label for="allergies">Allergies:</label>
+                <textarea formControlName="allergies" id="allergies" name="allergies" placeholder="Enter allergies"></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label for="diagnoses">Diagnoses:</label>
+                <textarea formControlName="diagnoses" id="diagnoses" name="diagnoses" placeholder="Enter diagnoses" required></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label for="diagnosesResults">Diagnoses Results:</label>
+                <textarea formControlName="diagnosesResults" id="diagnosesResults" name="diagnosesResults" placeholder="Enter diagnoses results" required></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label for="progressNotes">Progress Notes:</label>
+                <textarea formControlName="progressNotes" id="progressNotes" name="progressNotes" placeholder="Enter progress notes"></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label for="nextSteps">Next Steps:</label>
+                <textarea formControlName="nextSteps" id="nextSteps" name="nextSteps" placeholder="Enter next steps"></textarea>
+              </div>
+              
+              <div class="form-group">
+                <button type="submit">Submit</button>
+              </div>
+            </div>
+          </form>
+          
+        </div>
+        
+      </div>
+
+
+      <div *ngIf="MedicalFileview"  class="modal">
+        <div class="modal-content">
+          <div class="paper-view" *ngFor="let file of files" >
+            <div *ngIf="file && file.doctor.username==theactualdoc.username">
+              <button style="width:10%;margin-left: 90%;background-color: red;border: none;font-weight: bold;color: white;" (click)="closeMessageModal()">close</button>
+              <div class="sectionn">
+                <h2 style="margin-left: 175px;margin-bottom: 30px;">Patient Information</h2>
+                <div class="fieldd">
+                  <div class="labell">Patient:</div>
+                  <div class="valuee">{{file.patient.username}}</div>
+                </div>
+              </div>
+              <div class="section">
+                <h2 style="margin-left: 175px;margin-bottom: 30px;">Medical History</h2>
+                <div class="fieldd">
+                  <div class="labell">Medical History:</div>
+                  <div class="valuee">{{file.medicalHistory}}</div>
+                </div>
+                <div class="fieldd">
+                  <div class="labell">Allergies:</div>
+                  <div class="valuee">{{file.allergies}}</div>
+                </div>
+                <div class="fieldd">
+                  <div class="labell">Diagnoses:</div>
+                  <div class="valuee">{{file.diagnoses}}</div>
+                </div>
+                <div class="fieldd">
+                  <div class="labell">Diagnoses Results:</div>
+                  <div class="valuee">{{file.diagnosesResults}}</div>
+                </div>
+                <div class="fieldd">
+                  <div class="labell">Progress Notes:</div>
+                  <div class="valuee">{{file.progressNotes}}</div>
+                </div>
+                <div class="fieldd">
+                  <div class="labell">Next Steps:</div>
+                  <div class="valuee">{{file.nextSteps}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="files.length === 0">
+            <button style="width:10%;margin-left: 90%;background-color: red;border: none;font-weight: bold;color: white;" (click)="closeMessageModal()">close</button>
+            <h2 style="color: #ff5757; font-size: 28px; margin-top: 40px; text-align: center;">Oops! No medical files found for this patient.</h2>
+            <p style="font-size: 16px; text-align: center; margin-top: 20px;">Create a new medical file for this patient and check again.</p>
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+
+	
+</body>
+

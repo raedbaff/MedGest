@@ -1,0 +1,113 @@
+
+
+<!-- BEGIN BODY -->
+
+
+    
+    <!-- END TOPBAR -->
+    <!-- START CONTAINER -->
+    <div class="page-container row-fluid container-fluid">
+
+        <!-- SIDEBAR - START -->
+
+        
+        <!--  SIDEBAR - END -->
+
+        <!-- START CONTENT -->
+        <section id="main-content" class="">
+            <div class="wrapper main-wrapper row" style="">
+
+                <div class="col-xs-12">
+                    <div class="page-title">
+
+                        <div class="pull-left">
+                            <!-- PAGE HEADING TAG - START -->
+                            <h1 class="title">ALL Appointements</h1>
+                            <!-- PAGE HEADING TAG - END -->
+                        </div>
+
+                        <div class="pull-right hidden-xs">
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a routerLink="/home"><i class="fa fa-home"></i>Home</a>
+                                </li>
+                                
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <!-- MAIN CONTENT AREA STARTS -->
+
+                <div class="col-xs-12 mb-30">
+                    <div class="add-header-wrapper gradient-blue curved-section text-center">
+                        <h2 class="uppercase bold w-text">Recent Bills</h2>
+                        <div class="before-text">Doctor Bills</div>
+                        <p class="g-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto magni consequatur excepturi ab veritatis id facere facilis tempora sit amet, consectetur adipisicing elit. Iusto magni.</p>
+                    </div>
+
+                    <div class=" bg-w">
+                        <div class="col-lg-12">
+                            <section class="box ">
+                                <header class="panel_header">
+                                    <h2 class="title pull-left">Doctor Bills </h2>
+                                    <div class="actions panel_actions pull-right">
+                                        <a class="box_toggle fa fa-chevron-down"></a>
+                                        <a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>
+                                        <a class="box_close fa fa-times"></a>
+                                    </div>
+                                </header>
+                                <div class="content-body">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+
+                                            <!-- ********************************************** -->
+
+                                            <table id="example" class="display table table-hover table-condensed" >
+                                                <thead>
+                                                    <tr>
+                                                        <th>BillNo</th>
+                                                        <th>Bill Date</th>
+                                                        <th>Patient</th>
+                                                        <th>Doctor</th>
+                                                        <th>Charges</th>
+                                                        <th>Tax</th>
+                                                        <th>Discount</th>
+                                                        <th>Total</th>
+                                                        
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody *ngFor="let bill of bills">
+                                                    <tr>
+                                                        <td>{{bill.id}}</td>
+                                                        <td>{{bill.formattedDate}}</td>
+                                                        <td>{{bill.patient.username}}</td>
+                                                        <td>{{bill.doc.username}}</td>
+                                                        <td>{{bill.amount}}</td>
+                                                        <td>{{bill.tax}}</td>
+                                                        <td>{{bill.discount}}</td>
+                                                        <td>{{bill.total}}</td>
+                                                        
+                                                    
+                                                </tbody>
+                                            </table>
+                                            <!-- ********************************************** -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                
+        <!-- MAIN CONTENT AREA ENDS -->
+        </div>
+    </section>
+    <!-- END CONTENT -->
+   
