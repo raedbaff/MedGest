@@ -1,0 +1,234 @@
+<style>
+    .post-box {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  height: auto;
+}
+
+.post-image {
+  width: 300px;
+  height:250px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.post-image img {
+  max-width: 100%;
+  height: 100%;
+}
+
+.post-content {
+  flex-grow: 1;
+}
+
+.post-author {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: black;
+  font-family: cursive;
+  text-shadow:#ccc;
+}
+
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.accept-button {
+  background-color: #007bff;
+  color: #fff;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+}
+
+
+
+
+.accept-button:hover {
+  background-color: darkblue;
+}
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: block;
+}
+
+/* Modal */
+/* Modal Container */
+.modal-container {
+  position: fixed;
+  margin-top: 100px;
+  margin-left: 100px;
+  width: 50%;
+  height: 70%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Modal */
+.modall {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+}
+
+/* Modal Header */
+.modal-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 2px solid black;
+  
+}
+
+/* Modal Close Button */
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: 450px;
+}
+
+/* Modal Body */
+.modal-body {
+    display: flex;
+    flex-direction: column;
+  line-height: 1.5;
+  
+}
+.item{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+    align-items: center;
+}
+.itemimg{
+    margin-left: 0px;
+  border-radius: 50%;
+  border: 2px solid green;
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
+
+}
+
+
+
+
+
+
+</style>
+
+
+<div class="modal-container" *ngIf="list">
+    <div class="modall">
+      <div class="modal-header">
+        <h2 >Chest Doctor</h2>
+        <button class="modal-close" (click)="close()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h2 style="font-weight: bold;font-family: cursive;" *ngIf="fieldList.length==0">No doctors of this domain available at the moment </h2>
+        <div  class="item" *ngFor="let list of fieldList">
+            <img class="itemimg" src="http://127.0.0.1:8088/api/auth/Doctor/files/{{list.photo}}">
+            <p>{{list.username}}.</p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  
+<section id="main-content" class=" ">
+    <div class="wrapper main-wrapper row" >
+
+        <div class='col-xs-12'>
+            <div class="page-title">
+
+                <div class="pull-left">
+                    <!-- PAGE HEADING TAG - START -->
+                    <h1 class="title">Medical Fields</h1>
+                    <!-- PAGE HEADING TAG - END -->
+                </div>
+
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <!-- MAIN CONTENT AREA STARTS -->
+
+        <div class="col-lg-4 col-md-6" *ngFor="let field of fields |paginate:{itemsPerPage:3,currentPage:p}">
+            <section class="box ">
+                <div class="content-body p">
+                    <div class="row">
+                        <div class="post-box" >
+                            
+                            <div class="post-content">
+                              <div class="post-author">{{field.name}}</div>
+                              <div class="post-image">
+                                <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{field.photo}}" alt="Post Image">
+                              </div>
+                              
+                              <div class="button-container">
+                                <button  class="accept-button" (click)="openListModal(field.id)"  >Associated Doctors List</button>
+                                
+                                
+                                
+                              </div>
+                            </div>
+                          </div>
+                          
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        
+
+        
+
+        <div class="clearfix"></div>
+
+        <!-- <div class="col-xs-12 mb-30 mt-15">
+            <div class="form-group no-mb text-center">
+                <button type="button" class="btn btn-primary btn-lg gradient-blue" style="width:100%;max-width:300px"> Load more</button>
+            </div>
+        </div> -->
+
+    
+        
+
+        <!-- MAIN CONTENT AREA ENDS -->
+    </div>
+    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+</section>
+<!-- END CONTENT -->
+

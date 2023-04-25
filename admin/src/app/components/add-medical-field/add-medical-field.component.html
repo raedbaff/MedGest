@@ -1,0 +1,116 @@
+
+
+
+   
+    <!-- END TOPBAR -->
+    <!-- START CONTAINER -->
+    <div class="page-container row-fluid container-fluid">
+
+        
+
+        <!-- START CONTENT -->
+        <section id="main-content" class="">
+            <div class="wrapper main-wrapper row" >
+
+                <div class="col-xs-12">
+                    <div class="page-title">
+
+                        <div class="pull-left">
+                            <!-- PAGE HEADING TAG - START -->
+                            <h1 class="title">Add Patient</h1>
+                            <!-- PAGE HEADING TAG - END -->
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <!-- MAIN CONTENT AREA STARTS -->
+
+                <div class="col-xs-12 mb-30">
+                    <div class="add-header-wrapper gradient-blue curved-section text-center">
+                        <h2 class="uppercase bold w-text" style="font-family: cursive;">Add new Medical Field</h2>
+                        <div class="before-text">add Medical Field</div>
+                        <p class="g-text">Add a new Medical Field here</p>
+                    </div>
+
+                    <div class=" bg-w">
+                        <div class="col-lg-10 col-lg-offset-1 col-xs-12">
+                            <section class="box ">
+                                <header class="panel_header">
+                                    <h2 class="title pull-left">Medical Field Info</h2>
+                                    <div class="actions panel_actions pull-right">
+                                        <a class="box_toggle fa fa-chevron-down"></a>
+                                        <a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>
+                                        <a class="box_close fa fa-times"></a>
+                                    </div>
+                                </header>
+                                <div class="content-body">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <form [formGroup]="MedicalFieldForm" (ngSubmit)="createMedicalField()" action="#" method="post" >
+                                                
+
+                                                    <div class="form-group">
+                                                        <label class="form-label">Name</label>
+                                                        <span class="desc"></span>
+                                                        <div class="controls">
+                                                            <input formControlName="name" type="text" value="" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    
+                                                    
+
+                                                    
+                                                    <div class="form-group">
+                                                        <label class="form-label"> Image</label>
+                                                        <span class="desc"></span>
+                                                        <div class="controls">
+                                                            <input  type="file" class="form-control" (change)="onfileSelect($event)">
+                                                        </div>
+                                                    </div>
+
+                                                    
+                                                
+
+                                                <div class="padding-bottom-30">
+                                                    <div class="text-left">
+                                                        <button type="submit" class="btn btn-primary gradient-blue">Save</button>
+                                                        <button routerLink="/home" type="button" class="btn">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            
+                                            
+                                        </form>
+                                    </div>
+
+                                </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                
+        <!-- MAIN CONTENT AREA ENDS -->
+        </div>
+    </section>
+    <!-- END CONTENT -->
+    
+
+   
+
+    </div>
+    
+    <!-- END CONTAINER -->
+  
+    
+
+
+
+
+<!-- Mirrored from medash.netlify.app/html/hos-add-patient.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Mar 2023 11:25:45 GMT -->

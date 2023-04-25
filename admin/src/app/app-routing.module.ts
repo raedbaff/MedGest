@@ -17,6 +17,8 @@ import { MessageComponent } from './components/message/message.component';
 import { AuthGuard } from './guard/auth.guard';
 import { CommunityPostsComponent } from './components/community-posts/community-posts.component';
 import { DeclinedPostsComponent } from './components/declined-posts/declined-posts.component';
+import { AddMedicalFieldComponent } from './components/add-medical-field/add-medical-field.component';
+import { MedicalFieldsListComponent } from './components/medical-fields-list/medical-fields-list.component';
 
 const routes: Routes = [
   {path:"",component:LoginComponent},
@@ -29,6 +31,8 @@ const routes: Routes = [
       { path: "AllDoctors", component: DoctorsComponent },
        { path: "one/:id", component: DoctorProfileComponent },
       {path:"ajout",component:AjoutdocComponent},
+      {path:"addDomain",component:AddMedicalFieldComponent},
+      {path:"domainList",component:MedicalFieldsListComponent},
        {path:"edit/:id",component:EditDoctorComponent},
        {path:"AllPatients",component:AllPatientsComponent},
        {path:"AddPatient",component:AddPatientComponent},

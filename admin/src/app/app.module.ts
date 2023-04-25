@@ -28,6 +28,8 @@ import { BillsComponent } from './components/bills/bills.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
 import { CommunityPostsComponent } from './components/community-posts/community-posts.component';
 import { DeclinedPostsComponent } from './components/declined-posts/declined-posts.component';
+import { AddMedicalFieldComponent } from './components/add-medical-field/add-medical-field.component';
+import { MedicalFieldsListComponent } from './components/medical-fields-list/medical-fields-list.component';
 // import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -49,7 +51,9 @@ import { DeclinedPostsComponent } from './components/declined-posts/declined-pos
     BillsComponent,
     InvoiceComponent,
     CommunityPostsComponent,
-    DeclinedPostsComponent
+    DeclinedPostsComponent,
+    AddMedicalFieldComponent,
+    MedicalFieldsListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,11 @@
 package com.securityModel.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,7 +18,7 @@ public class DomainMedical {
 
 
     @OneToMany(mappedBy = "domainMedical",cascade=CascadeType.ALL)
-    @JsonIgnoreProperties("domainMedical,patient")
+    @JsonIncludeProperties({"id","username","photo"})
     private List<Doctor> list;
 
     public DomainMedical(Long id, String name, String photo, List<Doctor> list) {
@@ -27,6 +29,7 @@ public class DomainMedical {
     }
 
     public DomainMedical() {
+        this.list=new ArrayList<>();
 
     }
 

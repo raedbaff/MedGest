@@ -1,15 +1,19 @@
 package com.securityModel.security;
 
+import com.securityModel.models.Admin;
 import com.securityModel.models.ERole;
 import com.securityModel.models.Role;
+import com.securityModel.repository.AdminRepository;
 import com.securityModel.repository.RoleRepository;
 import com.securityModel.security.jwt.AuthEntryPointJwt;
 import com.securityModel.security.jwt.AuthTokenFilter;
+import com.securityModel.security.services.SecurityConfig;
 import com.securityModel.security.services.UserDetailsServiceImpl;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 //import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,41 +28,69 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Configuration
 //@EnableWebSecurity
 @EnableGlobalMethodSecurity(
 		// securedEnabled = true,
 		// jsr250Enabled = true,
 		prePostEnabled = true)
+@Import(SecurityConfig.class)
 public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
 	@Autowired
 	UserDetailsServiceImpl userDetailsService;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
 	@Autowired
 	private RoleRepository roleRepository;
+
+	@Autowired
+	AdminRepository adminRepository;
+
 	@PostConstruct
 	public void init() {
-		if (roleRepository.findByName(ERole.ROLE_ADMIN)==null){
+
+		System.out.println("Checking if admin role exists...");
+		if (!roleRepository.findByName(ERole.ROLE_ADMIN).isPresent()) {
+			boolean isAdminRoleNull = roleRepository.findByName(ERole.ROLE_ADMIN).isPresent();
+			System.out.println("Is admin role null? " + isAdminRoleNull);
 			Role adminRole = new Role(ERole.ROLE_ADMIN);
 			roleRepository.save(adminRole);
-
+			System.out.println("Admin role created.");
 		}
-		if (roleRepository.findByName(ERole.ROLE_PATIENT)==null){
+
+
+		if (!roleRepository.findByName(ERole.ROLE_PATIENT).isPresent()){
 			Role patientRole = new Role(ERole.ROLE_PATIENT);
 			roleRepository.save(patientRole);
 
 		}
-		if (roleRepository.findByName(ERole.ROLE_SECRETARY)==null){
+		if (!roleRepository.findByName(ERole.ROLE_SECRETARY).isPresent()){
 			Role secretaryRole = new Role(ERole.ROLE_SECRETARY);
 			roleRepository.save(secretaryRole);
 
 		}
-		if (roleRepository.findByName(ERole.ROLE_DOCTOR)==null){
+		if (!roleRepository.findByName(ERole.ROLE_DOCTOR).isPresent()){
 			Role doctorRole = new Role(ERole.ROLE_DOCTOR);
 			roleRepository.save(doctorRole);
 
+		}
+		if (!adminRepository.findByUsername("admin").isPresent()){
+			System.out.println("checking first");
+			Admin admin=new Admin();
+			admin.setUsername("admin");
+			admin.setEmail("admin@gmail.com");
+			admin.setPassword(passwordEncoder.encode("123456"));
+			Set<Role> roles = new HashSet<>();
+			Role role=roleRepository.findByName(ERole.ROLE_ADMIN).get();
+			roles.add(role);
+			admin.setRoles(roles);
+			adminRepository.save(admin);
 		}
 
 
@@ -81,7 +113,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
       DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
        
       authProvider.setUserDetailsService(userDetailsService);
-      authProvider.setPasswordEncoder(passwordEncoder());
+      authProvider.setPasswordEncoder((passwordEncoder));
    
       return authProvider;
   }
@@ -97,10 +129,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
     return authConfig.getAuthenticationManager();
   }
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+
 
 //	@Override
 //	protected void configure(HttpSecurity http) throws Exception {
