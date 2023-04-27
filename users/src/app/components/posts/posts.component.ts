@@ -117,14 +117,35 @@ export class PostsComponent implements OnInit {
     
   
   
-  createcomment(postid:number){
-    const message=this.form.value
-    this.patientService.postcomment(postid,message,this.sender).subscribe((data:any)=>{
-      this.getcommentsofAPost(postid)
-      this.getallposts()
-      
-    })
+createcomment(postid: number) {
+  const message = this.form.value
+  const inappropriateWords = ['fuck', 'sex', 'damn', 'bitch', 'motherfucker', 'cunt', 'ass'];
+  
+  for (let word of inappropriateWords) {
+    console.log("the message is and true or false : ",message.content,message.content.includes(word))
+    if (message.content.includes(word)) {
+      // Handle inappropriate word found in message
+      Swal.fire({
+        icon: 'warning',
+        title: 'Inappropriate Language Detected',
+        text: 'Please refrain from using inappropriate language in your comments. Continued use of such language may result in a ban.',
+        confirmButtonText: 'Ok'
+      }).then(()=>{
+        this.form.reset()
+      });
+      return;
+    }
   }
+  
+  // If no inappropriate words found, post the comment
+  this.patientService.postcomment(postid, message, this.sender).subscribe((data: any) => {
+    
+    this.getcommentsofAPost(postid);
+    this.getallposts();
+    this.form.reset()
+  });
+}
+
   likePost(id:any){
 
   }

@@ -94,6 +94,11 @@ export class DoctorService {
   getAllMedicalFields():Observable<any>{
     return this.http.get(`http://127.0.0.1:8088/domain/all`)
   }
+  getcommentreviews(comment:any):Observable<any>{
+    const formData=new FormData();
+    formData.append("comment",comment.content)
+    return this.http.post(`http://127.0.0.1:8000/sentiment`,formData)
+  }
   
   
 }
