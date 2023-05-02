@@ -42,8 +42,8 @@ public class MedicalBillController {
         notificationsRepository.save(not);
         Notifications not2=new Notifications();
         not2.setUser(doc);
-        not.setTimestamp(LocalDateTime.now());
-        not.setContent("you have a new Bill");
+        not2.setTimestamp(LocalDateTime.now());
+        not2.setContent("you have a new Bill");
         notificationsRepository.save(not2);
 
 

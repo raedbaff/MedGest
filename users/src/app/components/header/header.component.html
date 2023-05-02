@@ -22,24 +22,24 @@
           <li><a class="nav-link scrollto " routerLink="/home">Home</a></li>
           <li><a class="nav-link scrollto" routerLink="/home/about">About</a></li>
           <li><a class="nav-link scrollto" href="/home/#faq">FAQ</a></li>
-          <li><a class="nav-link scrollto" routerLink="/home/community">Community</a></li>
-          <li><a class="nav-link scrollto" routerLink="/home/services">Medical Fields</a></li>
-          <li><a class="nav-link scrollto" routerLink="/home/cabinets">Medical Cabinets</a></li>
-          <li><a class="nav-link scrollto" routerLink="/home/allDocs">All Doctors</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" routerLink="/home/community" style="color: blue;font-weight: bold;">Community</a></li>
+          <li><a class="nav-link scrollto" routerLink="/home/services" style="color: green;font-weight: bold;">Medical Fields</a></li>
+          <li><a class="nav-link scrollto" routerLink="/home/cabinets" style="color: green;font-weight: bold;">Medical Cabinets</a></li>
+          <li><a class="nav-link scrollto" routerLink="/home/allDocs" style="color: green;font-weight: bold;">All Doctors</a></li>
+          <li><a class="nav-link scrollto" href="home/#contact" style="color: red;font-weight: bold;">Complaint</a></li>
       
           <li class="dropdown" style="margin-left: -20px;">
-            <a style="margin-left: 30px;"><span>{{username}}
+            <a style="margin-left: 30px;font-size: large;letter-spacing: 2px;font-weight: bold;"><span>{{username}}
                 <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{photo}}" style="border-radius: 50%;overflow: hidden;width: 40px;height: 40px;" alt="Image">
               </span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a routerLink="/home/myProfile">Profile</a></li>
-              <li><a routerLink="/home/myappointements">My RendezVous</a></li>
-              <li><a routerLink="/MedicalFile/{{id}}">My Medical Files</a></li>
-              <li><a href="#" (click)="logout()">Logout</a></li>
+              <li><a style="text-decoration: none;" routerLink="/home/myProfile">Profile</a></li>
+              <li><a style="text-decoration: none;" routerLink="/home/myappointements">My RendezVous</a></li>
+              <li><a style="text-decoration: none;" routerLink="/MedicalFile/{{id}}">My Medical Files</a></li>
+              <li><a style="cursor: pointer;" (click)="logout()">Logout</a></li>
       
               <li class="dropdown notifications-dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <a style="text-decoration: none;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                    Notifications <i class="fa fa-bell"></i><span style="color:red">{{notificationNumber}}</span>
                 </a>
                 <ul class="dropdown-menu-left" >

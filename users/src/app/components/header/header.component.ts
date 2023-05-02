@@ -53,12 +53,15 @@ export class HeaderComponent implements OnInit {
         //localStorage.setItem("state","1");
         localStorage.clear()
         
-        this.router.navigateByUrl("/register")
-        Swal.fire({
-          icon: 'success',
-          title: 'Disconnected',
-          text: 'You have been successfully Logged Out'
-        });
+        this.router.navigate(['/register']).then(()=>{
+          Swal.fire({
+            icon: 'success',
+            title: 'Disconnected',
+            text: 'You have been successfully Logged Out'
+          });
+
+        })
+        
 
 
         // do any additional logic here

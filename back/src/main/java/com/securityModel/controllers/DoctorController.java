@@ -170,6 +170,7 @@ public class DoctorController {
 
 
         secretary.setRoles(roles);
+        secretary.setConfirm(true);
         String filename=storage.store(file);
         secretary.setPhoto(filename);
         secretaryRepository.save(secretary);

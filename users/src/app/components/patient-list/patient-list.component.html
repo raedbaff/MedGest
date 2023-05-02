@@ -106,7 +106,7 @@
       <div class="modal-content">
         <h2>Send a Message</h2>
         <button style="width:10%;margin-left: 90%;background-color: red;border: none;font-weight: bold;color: white;" (click)="closeMessageModal()">close</button>
-        <form [formGroup]="messageform" (ngSubmit)="sendmessage()" action="#" method="post" class="formsg">
+        <form [formGroup]="messageform" (ngSubmit)="sendmessage(patient.id)" action="#" method="post" class="formsg">
           <div class="message-container" >
             <div class="message-header">
               <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{sec?.photo}}" alt="Avatar" class="avatar">
@@ -162,10 +162,12 @@
               
               <div class="form-group">
                 <label for="Appointement">Appointement:</label>
-				<select formControlName="rendezvous" name="rendezvous" id="rendezvous" >
-					<option *ngFor="let rd of filteredpatientRDV" [value]="rd.id">{{rd.appointmentReason}}</option>
-					
-				</select>
+                <select formControlName="rendezvous" name="rendezvous" id="rendezvous">
+                  <option selected disabled>choose rendezvous first</option>
+                  <option *ngFor="let rd of filteredpatientRDV" [value]="rd.id">{{rd.appointmentReason}}</option>
+                </select>
+                
+                                
               </div>
               <div class="form-group">
                 <label for="Description">Appointement Description:</label>

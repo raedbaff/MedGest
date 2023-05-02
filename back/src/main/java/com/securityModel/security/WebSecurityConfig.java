@@ -90,6 +90,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
 			Role role=roleRepository.findByName(ERole.ROLE_ADMIN).get();
 			roles.add(role);
 			admin.setRoles(roles);
+			admin.setConfirm(true);
 			adminRepository.save(admin);
 		}
 

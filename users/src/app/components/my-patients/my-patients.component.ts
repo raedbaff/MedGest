@@ -145,7 +145,8 @@ export class MyPatientsComponent implements OnInit {
   }
   getmedicalfile(){
     return this.doctorservice.getMedicalFile(this.id4).subscribe((data:any)=>{
-      this.files=data
+      this.files=data.filter((file:any)=>file.doctor.id==this.id)
+      console.log("the length of this user files"+this.files.length)
     })
   }
   openMedicalFile(id:number){

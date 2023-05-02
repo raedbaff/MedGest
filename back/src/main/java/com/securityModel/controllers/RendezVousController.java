@@ -5,10 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.securityModel.Services.RendezVousService;
 import com.securityModel.models.*;
 import com.securityModel.payload.response.MessageResponse;
-import com.securityModel.repository.DoctorRepository;
-import com.securityModel.repository.NotificationsRepository;
-import com.securityModel.repository.PatientRepository;
-import com.securityModel.repository.RendezVousRepository;
+import com.securityModel.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -36,6 +33,8 @@ public class RendezVousController {
     DoctorRepository doctorRepository;
     @Autowired
     NotificationsRepository notificationsRepository;
+    @Autowired
+    DoctorAvailabilityRepository doctorAvailabilityRepository;
 
 
 
@@ -67,11 +66,21 @@ public class RendezVousController {
             rv.setPatientName(patient);
             rv.setDoctor(doctorname);
             rd.AddRendezVous(rv);
+            DoctorAvailability av=new DoctorAvailability();
+            av.setDoctor(doctorname);
+            av.setAppointmentDate(rv.getAppointmentDate());
+            av.setTime(rv.getFormattedTime());
+            doctorAvailabilityRepository.save(av);
 
             return ResponseEntity.ok(new MessageResponse("Rendez-vous saved successfully!"));
         } else {
             return ResponseEntity.badRequest().body(new MessageResponse("Patient not found."));
         }
+    }
+    @GetMapping("/getAv")
+    public List<DoctorAvailability> getAv(@RequestParam Long id){
+        return doctorAvailabilityRepository.findAllByDoctorId(id);
+
     }
 
 
@@ -90,7 +99,6 @@ public class RendezVousController {
         return rd.GetAllRendezVous();
     }
     @PostMapping("/confirm/{id}")
-    @PreAuthorize("hasRole('ROLE_SECRETARY')")
     public RendezVous ConfirmRendezVous(@PathVariable Long id){
         RendezVous rendezvous=rd.GetRendezVous(id);
         rendezvous.setConfirmed(true);

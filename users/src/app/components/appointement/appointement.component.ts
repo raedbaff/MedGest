@@ -19,6 +19,7 @@ export class AppointementComponent implements OnInit {
   user:any
   docs:any
   dateInput:any
+  doctorAvailability:any
  
   
 
@@ -63,17 +64,43 @@ export class AppointementComponent implements OnInit {
   
   requestrd() {
     const doctorId = this.form.get('doctor')?.value
-    this.patientService.CreateRendezvous(this.form.value, doctorId, this.user).subscribe((data: any) => {
-      console.log('Rendez-vous added');
-      Swal.fire({
-        icon: 'success',
-        title: 'Appointment requested',
-        showConfirmButton: false,
-        timer: 1500
-      });
-    }, error => {
-      console.log('Error:', error);
-    });
+    this.patientService.getdoctorAvailibility(doctorId).subscribe((data:any)=>{
+      this.doctorAvailability=data
+      if (this.doctorAvailability.some((av:any)=>av.doctor.id==doctorId && av.appointmentDate===this.form.get('appointmentDate')?.value && av.time===this.form.get('time')?.value)){
+        Swal.fire({
+          icon: 'warning',
+          title: 'Doctor Not available at the selected time',
+          text: 'The requested time is taken. Please choose another date.',
+        });
+        
+        
+      }
+      else {
+        this.patientService.CreateRendezvous(this.form.value, doctorId, this.user).subscribe(
+          (data: any) => {
+            console.log('Rendez-vous added');
+            Swal.fire({
+              icon: 'success',
+              title: 'Appointment requested',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          },
+          (error) => {
+            console.error('Error adding appointment:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error adding appointment',
+              text: 'Please check for missing fields and try again',
+            });
+          }
+        );
+        
+      }
+      
+    })
+    
+    
   }
   
     getalldocs(){

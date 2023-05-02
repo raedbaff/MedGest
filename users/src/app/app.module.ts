@@ -47,6 +47,8 @@ import { SecLayoutComponent } from './components/sec-layout/sec-layout.component
 import { SecHeaderComponent } from './components/sec-header/sec-header.component';
 import { PatientListComponent } from './components/patient-list/patient-list.component';
 import { SecPatientProfileComponent } from './components/sec-patient-profile/sec-patient-profile.component'
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -107,7 +109,9 @@ import { SecPatientProfileComponent } from './components/sec-patient-profile/sec
     FormsModule,
     NgxStarRatingModule,
     NgbModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
    
   ],
   providers: [ 

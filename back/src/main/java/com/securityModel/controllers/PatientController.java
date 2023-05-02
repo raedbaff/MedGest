@@ -7,10 +7,7 @@ import com.securityModel.payload.request.LoginRequest;
 import com.securityModel.payload.request.SignupRequest;
 import com.securityModel.payload.response.JwtResponse;
 import com.securityModel.payload.response.MessageResponse;
-import com.securityModel.repository.DoctorRatingRepository;
-import com.securityModel.repository.DoctorRepository;
-import com.securityModel.repository.PatientRepository;
-import com.securityModel.repository.RoleRepository;
+import com.securityModel.repository.*;
 import com.securityModel.security.jwt.JwtUtils;
 import com.securityModel.security.services.RefreshTokenService;
 import com.securityModel.security.services.UserDetailsImpl;
@@ -66,6 +63,8 @@ public class PatientController {
     StorageService storage;
     @Autowired
     DoctorRatingRepository doctorRatingRepository;
+    @Autowired
+    ComplaintRepository complaintRepository;
     @PostMapping("/signup")
     public ResponseEntity<?> registerPatient(@RequestParam("file") MultipartFile file,SignupRequest signUpRequest, HttpServletRequest request) throws MessagingException, MessagingException, IOException {
         if (patientRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -193,6 +192,14 @@ public class PatientController {
         patient.setSocialAccount(pat.getSocialAccount());
         patient.setProfession(pat.getProfession());
         return patientRepository.save(patient);
+    }
+    @PostMapping("/complaint")
+    public void FileComplaint(Principal principal,Complaint complaint){
+        String name=principal.getName();
+        Patient patient=patientRepository.findByUsername(name).get();
+        complaint.setPatient(patient);
+        complaintRepository.save(complaint);
+
     }
 }
 

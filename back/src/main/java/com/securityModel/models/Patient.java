@@ -37,6 +37,16 @@ public class Patient extends User{
     private List<Comment>comments;
     @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<LikePost>likes;
+    @OneToMany(mappedBy = "patient",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Complaint>complaints;
+
+    public List<Complaint> getComplaints() {
+        return complaints;
+    }
+
+    public void setComplaints(List<Complaint> complaints) {
+        this.complaints = complaints;
+    }
 
     public List<LikePost> getLikes() {
         return likes;

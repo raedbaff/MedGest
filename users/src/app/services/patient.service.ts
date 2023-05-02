@@ -39,6 +39,10 @@ export class PatientService {
       }
     });
   }
+  getdoctorAvailibility(id:number){
+    
+    return this.http.get(`http://127.0.0.1:8088/RendezVous/getAv?id=${id}`)
+  }
   getpatientRenezvous(patientToken:String):Observable<any>{
     return this.http.get(`http://127.0.0.1:8088/RendezVous/userRendezVous`,{headers:{
       'Authorization':`Bearer ${patientToken}`
@@ -141,6 +145,15 @@ export class PatientService {
   }
   getMedicalFile(id:number){
     return this.http.get(`http://127.0.0.1:8088/MedicalFile/myfiles/${id}`)
+  }
+  FileComplaint(Complaint:any,patientToken:String){
+    const formData=new FormData()
+    formData.append("description",Complaint.description)
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${patientToken}`,
+      Accept: 'application/json',
+    });
+    return this.http.post(`http://127.0.0.1:8088/api/auth/Patient/complaint`,formData,{headers:headers})
   }
   
   

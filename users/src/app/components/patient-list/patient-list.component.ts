@@ -61,26 +61,26 @@ export class PatientListComponent implements OnInit {
       
       
   }
-  getPatient(){
-    this.AuthService.getpatient(this.id2).subscribe((data:any)=>{
+  getPatient(id:number){
+    this.AuthService.getpatient(id).subscribe((data:any)=>{
       this.pat=data.username
       this.patient=data.id
       this.patientRDV=data.myRendezVous
       this.filteredpatientRDV=this.patientRDV.filter((rd:any)=>rd.doctor.id===this.sec.cabinet.doctor.id)
       this.filtered=data.myBills.filter((bill:any)=>bill.doc.username === this.sec.cabinet.doctor.username)
-      console.log("the length of the filtered is : "+this.filtered.length)
+      
       this.patientbills=this.filtered.map((bill:{date:Date})=>{
         const formattedDate=this.datepipe.transform(bill.date,'dd MMMM yyyy')
         return {...bill,formattedDate}
       })
       
-      console.log("the bills "+this.patientbills.length)
+      
       
       
     })
   }
-  getnewmessages(){
-    return this.patientService.getmessages(this.id,this.id2).subscribe((data:any)=>{
+  getnewmessages(id:number){
+    return this.patientService.getmessages(this.id,id).subscribe((data:any)=>{
       this.newmsg=data
       this.newmsg.forEach((msg:any)=>{
         msg.timestamp=this.datepipe.transform(msg.timestamp,"shortTime")
@@ -90,10 +90,10 @@ export class PatientListComponent implements OnInit {
       
     })
   }
-  sendmessage(){
+  sendmessage(id:number){
     const message=this.messageform.value
     this.patientService.sendmessage(this.id,this.id2,message).subscribe((data:any)=>{
-      this.getnewmessages()
+      this.getnewmessages(id)
       this.messageform.reset()
       
       console.log("message is sent"+data)
@@ -119,40 +119,45 @@ export class PatientListComponent implements OnInit {
   }
   createbill(){
     const bill=this.medialbillform.value
+    console.log("the rendezvous id : "+this.medialbillform.get("rendezvous")?.value)
     return this.secretaryService.createMedicalBill(bill).subscribe(()=>{
+      
       Swal.fire({
         title: 'Success',
         text: 'bill created successfuly',
         timer: 1000, // Timeout duration in milliseconds
         timerProgressBar: true, // Show progress bar
-      });
+      })
+      
       
       
     })
   }
+
+  
   openMessageModal(id:number){
     this.messageModalOpen = true;
-    this.id2=id
-    this.getPatient()
-    this.getnewmessages()
+    
+    this.getPatient(id)
+    this.getnewmessages(id)
     this.newMessageSubject.pipe(
       debounceTime(1500)
     ).subscribe((data:any) => {
-      this.getnewmessages();
+      this.getnewmessages(id);
     });
   }
   openMedicalBillModal(id:number){
     this.medicalbillopen=true;
-    this.id2=id;
-    console.log("the patient id is "+this.id2,id)
-    this.getPatient();
+  
+    this.getPatient(id);
+    
+    
     
     }
   openMedicalbill(id:number){
     this.medicalbillview=true;
-    this.id2=id
-    console.log("the id is "+this.id2,+id)
-    this.getPatient()
+    console.log("the id is "+id)
+    this.getPatient(id)
     }
     
     closeMessageModal(){
@@ -164,6 +169,11 @@ export class PatientListComponent implements OnInit {
     }
     close(){
       this.medicalbillopen=false
+      window.location.reload()
+      
+      
+      
+      
     }
 
 }

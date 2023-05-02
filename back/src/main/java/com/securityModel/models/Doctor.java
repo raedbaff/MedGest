@@ -53,6 +53,8 @@ public class Doctor extends User {
     private List<MedicalBill>doctorBills;
     @OneToMany(mappedBy = "doctor")
     private List<DoctorRating> ratings;
+    @OneToMany(mappedBy = "doctor")
+    private List<DoctorAvailability> docAv;
     public void setDescription(String description) {
         Description = description;
     }
@@ -162,5 +164,13 @@ public class Doctor extends User {
 
     public void setRendezvousList(List<RendezVous> rendezvousList) {
         this.rendezvousList = rendezvousList;
+    }
+
+    public List<DoctorAvailability> getDocAv() {
+        return docAv;
+    }
+
+    public void setDocAv(List<DoctorAvailability> docAv) {
+        this.docAv = docAv;
     }
 }

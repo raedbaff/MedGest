@@ -60,6 +60,8 @@ public class AdminController {
     StorageService storage;
     @Autowired
     PostRepository postRepository;
+    @Autowired
+    ComplaintRepository complaintRepository;
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerDoctor(@Valid @RequestBody SignupRequest signUpRequest, HttpServletRequest request) throws MessagingException, MessagingException {
@@ -161,6 +163,10 @@ public class AdminController {
         post.setAccepted(true);
         return postRepository.save(post);
 
+    }
+    @GetMapping("/complaints")
+    public List<Complaint>GetAllComplaints(){
+        return complaintRepository.findAll();
     }
 
 

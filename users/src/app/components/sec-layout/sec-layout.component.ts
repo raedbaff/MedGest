@@ -48,6 +48,7 @@ export class SecLayoutComponent implements OnInit {
     })
   }
   confirmRendezVous(id:number){
+    
     return this.secretaryService.confirmRendezvous(this.token,id).subscribe(()=>{
       this.getSecinfo()
       

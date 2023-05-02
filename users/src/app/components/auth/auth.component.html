@@ -108,11 +108,15 @@
 		font-size: 14px;
 		margin-top: 10px;
 	}
+	
 
 
 	</style>
 </head>
 <body>
+	
+		
+	  
 	<form [formGroup]="registrationForm" (ngSubmit)="onsubmit()" action="#" method="post">
 		<h2>Registration Form</h2>
 
@@ -146,6 +150,7 @@
 
 		<button type="submit" value="Submit">Register</button>
         <a routerLink="/register" class="switch-link">Already have an account ?</a>
+		<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="large" color="#fff" type="ball-circus" [fullScreen] = "true"></ngx-spinner>
 	</form>
 </body>
 </html>
