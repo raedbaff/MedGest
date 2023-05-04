@@ -4,6 +4,7 @@ import { PatientService } from 'src/app/services/patient.service';
 import { DatePipe } from '@angular/common';
 import { BillsService } from 'src/app/services/bills.service';
 import { HttpClient } from '@angular/common/http';
+import { Chart, LinearScale } from 'chart.js/auto';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
   providers: [DatePipe]
 })
 export class LayoutComponent implements OnInit {
+  chart!: Chart;
   datalist:any
   patientdata:any
   numberofpatients!:number
@@ -37,6 +39,48 @@ export class LayoutComponent implements OnInit {
     this.getnumberofbills()
     this.getnumberofdomains()
     this.getratings()
+    setTimeout(() => {
+    const canvas = document.getElementById('myChart') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d')!;
+    this.chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Doctors', 'Patients', 'Bills','Medical Fields',"Positive Reviews","Negative Reviews"],
+        datasets: [{
+          label: 'Platform Statistics',
+          data: [this.numberofdocs, this.numberofpatients, this.numberofbills,this.numberofdomains,this.numberofpositivereviews,this.numberofnegativereviews],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+            
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            
+          ],
+          borderWidth: 2
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            type: 'linear',
+            beginAtZero: true,
+            ticks: {
+              stepSize: 1
+            }
+          }
+        }
+      },
+      plugins: [LinearScale],
+    });
+    }, 1000);
   }
 
   getnumberofdoctors(){

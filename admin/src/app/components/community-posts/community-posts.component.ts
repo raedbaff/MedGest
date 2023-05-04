@@ -81,7 +81,7 @@ export class CommunityPostsComponent implements OnInit {
             'rgba(255, 206, 86, 1)',
             
           ],
-          borderWidth: 1
+          borderWidth: 2
         }]
       },
       options: {

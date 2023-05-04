@@ -1,5 +1,5 @@
 <section id="main-content" class=" ">
-    <div class="wrapper main-wrapper row" style=''>
+    <div class="wrapper main-wrapper row" >
 
         <div class='col-xs-12'>
             <div class="page-title">
@@ -80,6 +80,14 @@
 
         <div class="clearfix"></div>
         <!-- MAIN CONTENT AREA STARTS -->
+        <section class="statistics-section">
+            <h3 class="statistics-title">Statistics</h3>
+            <div class="chart-container">
+              <canvas id="myChart"></canvas>
+            </div>
+          </section>
+          
+        
 
         <div class="col-lg-8">
             <section class="box" style="overflow:hidden">
@@ -102,9 +110,15 @@
                                             <p class="message">
                                                 <span class="text-info bold">Dr : </span> {{rv.doctor.username}}
                                             </p>
-                                            <small class="text-muted">
+                                            <small class="text-muted" style="font-weight: bold;">
                                                 {{rv.appointmentReason}}
                                             </small>
+                                            <br>
+                                            <div style="margin-left: 50px;display: inline-block; background-color: #F5F5F5; padding: 5px 10px; border-radius: 5px; border: 1px solid black;">
+                                                <span style="color: blue; font-weight: bold; font-family: cursive; letter-spacing: 2px;">{{rv.patientName.username}}</span>
+                                              </div>
+                                              
+                                              
                                         </div>
                                         <div class="visit-date pull-right">
                                             <p class="mb-0">{{rv.formattedDate}}</p>
@@ -222,106 +236,44 @@
     <div class="clearfix"></div>
 
     <div class="col-lg-8">
-        <section class="box">
-            <header class="panel_header">
-                <h2 class="title pull-left">Recent Payments Queue</h2>
-                <div class="actions panel_actions pull-right">
-                    <a class="box_toggle fa fa-chevron-down"></a>
-                    <a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>
-                    <a class="box_close fa fa-times"></a>
-                </div>
+        <section class="box rounded-lg shadow-lg">
+            <header class="panel_header bg-gradient-to-r from-red-500 to-red-600 rounded-t-lg">
+              <h2 class="title text-white font-bold">Patient Notes</h2>
+              <div class="actions panel_actions">
+                <a class="box_toggle text-white"><i class="fas fa-chevron-down"></i></a>
+                <a class="box_setting text-white"><i class="fas fa-cog"></i></a>
+                <a class="box_close text-white"><i class="fas fa-times"></i></a>
+              </div>
             </header>
-            <div class="content-body">
-                <div class="row">
-                    <div class="col-xs-12">
-
-                        <div class="table-responsive" data-pattern="priority-columns">
-                            <table id="tech-companies-1" class="table vm table-small-font no-mb table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Patient</th>
-                                        <th>Ward No.</th>
-                                        <th>Dr Name</th>
-                                        <th>Status</th>
-                                        <th>Bills</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="round">S</div>
-                                            <div class="designer-info">
-                                                <h6>Sunil Joshi</h6>
-                                                <small class="text-muted">Male, 34 Years</small>
-                                            </div>
-                                        </td>
-                                        <td>202</td>
-                                        <td>Elite Admin</td>
-                                        <td><span class="badge round-primary">checkin</span></td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="round round-success">V</div>
-                                            <div class="designer-info">
-                                                <h6>Messsy Adam</h6>
-                                                <small class="text-muted">Male, 27 Years</small>
-                                            </div>
-                                        </td>
-                                        <td>204</td>
-                                        <td>Bright Themes</td>
-                                        <td><span class="badge badge-primary">Vitals</span></td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="round round-warning">J</div>
-                                            <div class="designer-info">
-                                                <h6>John Richards</h6>
-                                                <small class="text-muted">Female, 34 Years</small>
-                                            </div>
-                                        </td>
-                                        <td>459</td>
-                                        <td>Junior Smith</td>
-                                        <td><span class="badge round-danger">checkin</span></td>
-                                        <td>$86,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="round round-primary">P</div>
-                                            <div class="designer-info">
-                                                <h6>Peter Meggik</h6>
-                                                <small class="text-muted">Male, 19 Years</small>
-                                            </div>
-                                        </td>
-                                        <td>206</td>
-                                        <td>Flaion fanzzy</td>
-                                        <td><span class="badge round-warning">checkin</span></td>
-                                        <td>$433,060</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="round round-danger">T</div>
-                                            <div class="designer-info">
-                                                <h6>Henry Tom</h6>
-                                                <small class="text-muted">Female, 44 Years</small>
-                                            </div>
-                                        </td>
-                                        <td> 406</td>
-                                        <td> Light Ads</td>
-                                        <td><span class="badge badge-primary">Vitals</span></td>
-                                        <td>$162,700</td>
-                                    </tr>
-                                    
-
-                                </tbody>
-                            </table>
+            <div class="content-body p-4" *ngIf="ratings">    
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="list-group">
+                    <div class="list-group-item" *ngFor="let rate of ratings.slice(0,4)">
+                      <div class="d-flex justify-content-between">
+                        <h5 class="font-bold" style="font-size: large;font-weight: bold;text-align: center;">{{rate.doctor.username}}</h5>
+                        <div class="stars" style="margin-left:300px">
+                          <ng-container *ngFor="let i of [].constructor(rate.rating); let j = index;">
+                            <i class="fas fa-star text-yellow-500" style="color:orange"></i>
+                          </ng-container>
+                          <ng-container *ngFor="let i of [].constructor(5 - rate.rating); let j = index;">
+                            <i class="far fa-star text-yellow-500"></i>
+                          </ng-container>
                         </div>
-
+                      </div>
+                      <div style="margin-top: 20px;">
+                        <p class="text-gray-600"> <span style="font-weight: bold;font-size: large;">Review : </span>{{rate.patientNotes}}</p>
+                      <small class="text-gray-500" style="font-weight: bold;"> <span style="font-size: large;font-weight: bold;">BY : </span>{{rate.patient.username}}</small>
+                        
+                      </div>
+                      
                     </div>
+                  </div>
                 </div>
+              </div> <!-- End .row -->
             </div>
-        </section>
+          </section>
+          
         
         
     </div>
@@ -382,167 +334,8 @@
 
         </div>
 
-        <div class="col-xs-12 col-md-6 col-lg-6">
-            <section class="box ">
-                <header class="panel_header">
-                    <h2 class="title pull-left">Patients Notes</h2>
-                    <div class="actions panel_actions pull-right">
-                        <a class="box_toggle fa fa-chevron-down"></a>
-                        <a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>
-                        <a class="box_close fa fa-times"></a>
-                    </div>
-                </header>
-                <div class="content-body" *ngIf="ratings">    
-                    <div class="row"  >
-                        <div class="col-xs-12"  *ngFor="let rate of ratings.slice(0,4)">
-                            <ul class="project-activity list-unstyled mb-0">
-                                <li class="activity-list warning">
-                                    <div class="detail-info">
-                                        <div class="visit-doc">
-                                            
-                                            <div style="display: flex;flex-direction: row;justify-content: flex-start; align-items: center;">
-                                                <h4 style="margin-right: 10px; color: black; font-weight: bold; font-family: cursive;"> {{rate.doctor.username}} :</h4>
-                                                <div class="stars" style="color:orange"  *ngIf="rate.rating==1">
-                                                    <i class="fa fa-star"></i>
-                            
-                                                  </div>
-                                                  <div class="stars" style="color:orange" *ngIf="rate.rating==2">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                            
-                                                  </div>
-                                                  <div class="stars" style="color:orange" *ngIf="rate.rating==3">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                            
-                                                  </div>
-                                                  <div class="stars" style="color:orange" *ngIf="rate.rating==4">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                            
-                                                  </div>
-                                                  
-                                                  <div class="stars" style="color:orange" *ngIf="rate.rating==5">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                            
-                                                  </div>
-
-                                            </div>
-                                            
-                                              
-                                              <div style="margin-bottom: 10px;margin-top: 10px; font-weight: bold;"><small  class="text-muted">
-                                                {{rate.patientNotes}}
-                                            </small></div>
-                                            
-                                            <p style="font-weight: bold; font-family: cursive;" class="message">
-                                                {{rate.patient.username}}
-                                            </p>
-                                            
-                                        </div>
-                                        
-                                    </div>
-                                </li>
-                                <li class="clearfix"></li>
-                                
-                                
-
-
-                            </ul>
-                        </div>      
-                    </div> <!-- End .row -->
-                </div>
-            </section>
-        </div>
-        <div class="col-xs-12 col-md-6 col-lg-6">
-            <section class="box ">
-                <header class="panel_header">
-                    <h2 class="title pull-left">Notifications</h2>
-                    <div class="actions panel_actions pull-right">
-                        <a class="box_toggle fa fa-chevron-down"></a>
-                        <a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>
-                        <a class="box_close fa fa-times"></a>
-                    </div>
-                </header>
-                <div class="content-body">    
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <ul class="project-activity list-unstyled mb-0">
-                                <li class="activity-list warning">
-                                    <div class="detail-info">
-                                        <div class="visit-doc">
-                                            <small class="text-muted">
-                                                You comfirm Dr sultads visit 
-                                            </small>
-                                            <p class="message">
-                                                27 July - 05:34
-                                            </p>
-                                            
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="clearfix"></li>
-                                <li class="activity-list info">
-                                    <div class="detail-info">
-                                        <div class="visit-doc">
-                                            <small class="text-muted">
-                                                Reminder : Treatment Time!
-                                            </small>
-                                            <p class="message">
-                                                25 july - 20:00
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="activity-list success">
-                                    <div class="detail-info">
-                                        <div class="visit-doc">
-                                            <small class="text-muted">
-                                                You completed Dr Joun visit 
-                                            </small>
-                                            <p class="message">
-                                                26 Feb - 23:47
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="activity-list warning">
-                                    <div class="detail-info">
-                                        <div class="visit-doc">
-                                            <small class="text-muted">
-                                                Your Blood check is good!
-                                            </small>
-                                            <p class="message">
-                                                23 Jan - 21:45
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="activity-list danger">
-                                    <div class="detail-info pb0">
-                                        <div class="visit-doc">
-                                            <small class="text-muted">
-                                                You Cancelled Dr Wall Smith visit
-                                            </small>
-                                            <p class="message">
-                                                17 Nov - 12:23
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>      
-                    </div> <!-- End .row -->
-                </div>
-            </section>
-        </div>
+        
+        
 
     
         <div class="clearfix"></div>

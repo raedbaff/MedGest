@@ -41,4 +41,7 @@ getallratings():Observable<any>{
 getDocratings(id:any):Observable<any>{
   return this.http.get(`http://127.0.0.1:8088/api/auth/Patient/rate/${id}`)
 }
+GetAllComplaints():Observable<any>{
+  return this.http.get(`http://127.0.0.1:8088/api/auth/Admin/complaints`)
+}
 }

@@ -19,6 +19,7 @@ import { CommunityPostsComponent } from './components/community-posts/community-
 import { DeclinedPostsComponent } from './components/declined-posts/declined-posts.component';
 import { AddMedicalFieldComponent } from './components/add-medical-field/add-medical-field.component';
 import { MedicalFieldsListComponent } from './components/medical-fields-list/medical-fields-list.component';
+import { ComplaintsComponent } from './components/complaints/complaints.component';
 
 const routes: Routes = [
   {path:"",component:LoginComponent},
@@ -41,7 +42,8 @@ const routes: Routes = [
        {path:"bills",component:BillsComponent},
        {path:"invoice/:id",component:InvoiceComponent},
        {path:"community",component:CommunityPostsComponent},
-       {path:"declinedPosts",component:DeclinedPostsComponent}
+       {path:"declinedPosts",component:DeclinedPostsComponent},
+       {path:"complaints",component:ComplaintsComponent}
     ]
   }
 ];

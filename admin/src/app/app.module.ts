@@ -30,6 +30,7 @@ import { CommunityPostsComponent } from './components/community-posts/community-
 import { DeclinedPostsComponent } from './components/declined-posts/declined-posts.component';
 import { AddMedicalFieldComponent } from './components/add-medical-field/add-medical-field.component';
 import { MedicalFieldsListComponent } from './components/medical-fields-list/medical-fields-list.component';
+import { ComplaintsComponent } from './components/complaints/complaints.component';
 // import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -53,7 +54,8 @@ import { MedicalFieldsListComponent } from './components/medical-fields-list/med
     CommunityPostsComponent,
     DeclinedPostsComponent,
     AddMedicalFieldComponent,
-    MedicalFieldsListComponent
+    MedicalFieldsListComponent,
+    ComplaintsComponent
   ],
   imports: [
     BrowserModule,
