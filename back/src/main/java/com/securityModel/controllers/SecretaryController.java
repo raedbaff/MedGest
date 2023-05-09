@@ -13,6 +13,7 @@ import com.securityModel.repository.SecretaryRepository;
 import com.securityModel.security.jwt.JwtUtils;
 import com.securityModel.security.services.RefreshTokenService;
 import com.securityModel.security.services.UserDetailsImpl;
+import com.securityModel.utils.StorageService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -48,6 +51,8 @@ public class SecretaryController {
     JwtUtils jwtUtils;
     @Autowired
     RendezVousRepository rendezVousRepository;
+    @Autowired
+    StorageService storage;
     @GetMapping("/sec/{id}")
     public Secretary getsec(@PathVariable("id")Long id){
         return secretaryRepository.findById(id).get();
@@ -85,6 +90,24 @@ public class SecretaryController {
             throw new RuntimeException("Secretary account not confirmed");
         }
 
+    }
+    @PutMapping("/edit/{id}")
+    public void editSecretaryProfile(@PathVariable("id")Long id,Secretary secretary){
+
+        Secretary sec=secretaryRepository.findById(id).get();
+        sec.setUsername(secretary.getUsername());
+        sec.setAge(secretary.getAge());
+        sec.setExperience(secretary.getExperience());
+        sec.setEmail(secretary.getEmail());
+        secretaryRepository.save(sec);
+    }
+    @PutMapping("/editPhoto/{id}")
+    public void editPhoto(@RequestParam("file") MultipartFile file,@PathVariable("id")Long id){
+
+        Secretary sec=secretaryRepository.findById(id).get();
+        String filename=storage.store(file);
+        sec.setPhoto(filename);
+        secretaryRepository.save(sec);
     }
 
 }

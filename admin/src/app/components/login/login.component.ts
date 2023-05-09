@@ -3,6 +3,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import {FormGroup,FormBuilder,Validators} from '@angular/forms'
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService:AuthService,
     private formbuilder:FormBuilder,
-    private router:Router) { }
+    private router:Router,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.form=this.formbuilder.group({
@@ -25,8 +28,7 @@ export class LoginComponent implements OnInit {
     })
   }
   onSubmit() {
-    
-
+    this.spinner.show();
     this.loginService.login(this.form.value).subscribe((response:any) => {
       const roles = response.roles;
       if (roles.includes('ROLE_ADMIN')) {
@@ -45,13 +47,14 @@ export class LoginComponent implements OnInit {
       
       } else {
         // Redirect to unauthorized page
-        this.router.navigateByUrl('/unauthorized');
         Swal.fire({
           icon:"error",
           title:"no right to access",
           text: 'you do not have the right to access admin dashboard',
         })
       }
+      
+
       
 
 
@@ -67,7 +70,9 @@ export class LoginComponent implements OnInit {
         })
         
       }
-    );
+    ).add(() => {
+      this.spinner.hide(); // move hide method here
+    });
   }
 
 }

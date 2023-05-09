@@ -74,3 +74,14 @@ input[type="submit"] {
 input[type="submit"]:hover {
 	background-color: #3071a9;
 }
+.backtohome {
+	position: fixed;
+	top: 0;
+	left: 0;
+	margin: 20px;
+	color: red;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 35px;
+	font-family: cursive;
+}

@@ -13,6 +13,25 @@ public class Secretary extends User{
     private String photo;
     @OneToOne(mappedBy = "secretary")
     private Cabinet cabinet;
+    private Integer experience;
+    private Integer age;
+
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
     public Secretary(String photo) {
         this.photo = photo;

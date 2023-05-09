@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DoctorAuthService } from 'src/app/services/doctor-auth.service';
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-doc-login',
@@ -13,7 +14,9 @@ export class DocLoginComponent implements OnInit {
   form!:FormGroup
 
 
-  constructor(private doctorService:DoctorAuthService,private router:Router,private formBuilder: FormBuilder) { }
+  constructor(private doctorService:DoctorAuthService,private router:Router,
+    private formBuilder: FormBuilder,
+    private spinner:NgxSpinnerService ) { }
 
   ngOnInit(): void {this.form=this.formBuilder.group({
     username: ['', Validators.required],
@@ -21,6 +24,7 @@ export class DocLoginComponent implements OnInit {
   })
   }
   onsubmit(){
+    this.spinner.show()
     const Doctor=this.form.value
     this.doctorService.login(Doctor).subscribe((response:any)=>{
       const roles = response.roles;
@@ -47,7 +51,9 @@ export class DocLoginComponent implements OnInit {
           text: 'you do not have the right to access admin dashboard',
         })
       }
-    })
+    }).add(() => {
+      this.spinner.hide(); // move hide method here
+    });
   }
 
 }

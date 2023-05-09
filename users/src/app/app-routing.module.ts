@@ -60,7 +60,7 @@ const routes: Routes = [
   component:SecretaryHomeComponent,children:[
     {path:"",component:SecLayoutComponent},
     {path:"patientsList",component:PatientListComponent},
-    {path:"patientProfile/:id",component:SecPatientProfileComponent}
+    {path:"patientProfile",component:SecPatientProfileComponent}
     
   ]},
   {path:"home",

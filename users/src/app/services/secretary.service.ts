@@ -3,12 +3,29 @@ import {HttpClient,HttpHeaders} from '@angular/common/http'
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class SecretaryService {
 
   constructor(private http:HttpClient,private router:Router) { }
+  EditSecretaryProfile(Secretary:any,id:number){
+    
+    const formdata=new FormData()
+    formdata.append("username",Secretary.username),
+    formdata.append("email",Secretary.email),
+    formdata.append("age",Secretary.age),
+    formdata.append("experience",Secretary.experience)
+    
+    return this.http.put(`http://127.0.0.1:8088/api/auth/Secretary/edit/${id}`,formdata)
+  }
+  ChangePhoto(file:File,id:number){
+    
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+    return this.http.put(`http://127.0.0.1:8088/api/auth/Secretary/editPhoto/${id}`,formData)
+  }
   getSecretary(id:number){
     return this.http.get(`http://127.0.0.1:8088/api/auth/Secretary/sec/${id}`)
   }

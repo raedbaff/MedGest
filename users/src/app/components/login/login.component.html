@@ -102,11 +102,24 @@
 		font-size: 14px;
 		margin-top: 10px;
 	}
+	.backtohome {
+	position: fixed;
+	top: 0;
+	left: 0;
+	margin: 20px;
+	color: red;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 35px;
+	font-family: cursive;
+}
+
 
 
 	</style>
 </head>
 <body>
+	<a class="backtohome" routerLink="/">Back to home Page</a>
 	<form [formGroup]="form" (ngSubmit)="onSubmit()" action="#" method="post">
 		<h2>Login Form</h2>
 

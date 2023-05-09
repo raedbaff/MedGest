@@ -28,6 +28,8 @@ export class DoctorProfileComponent implements OnInit {
   senderId=localStorage.getItem("userid")
   receiverId=this.id
   ratings:any
+  numberOfRatings!:number
+  average!:number
 
   constructor(private datePipe: DatePipe,
     private patientservice:PatientService,private route: ActivatedRoute,
@@ -48,8 +50,15 @@ export class DoctorProfileComponent implements OnInit {
     getonedoc(){
       this.doctorService.getDoctorById(this.id).subscribe((res:any)=>{
         this.onedoctor=res
-        console.log(res)
-        console.log("one doctor",this.onedoctor.photo)
+        let number=0
+        this.onedoctor.ratings.forEach((element:any)=>{
+          number+=element.rating
+
+        })
+        this.average=parseFloat((number/this.onedoctor.ratings.length).toFixed(1))
+        console.log("the average is this bro : "+this.average,+number)
+
+        console.log("the doctor patients length : "+this.onedoctor.myPatients[0].username)
         this.check()
         this.check2()
         console.log("the stat is " +this.stat)

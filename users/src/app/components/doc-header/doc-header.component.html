@@ -13,13 +13,13 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <a href="index.html" class="logo me-auto"><img src="assets/medical-logo-sign-stock-vector-medical-logo-vector-117790920.jpg" style="border-radius: 50%;height: 120px;width: 120px;" alt=""></a>
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/medical-logo-sign-stock-vector-medical-logo-vector-117790920.jpg" style="border-radius: 50%;height: 120px;width: 120px;" alt=""></a> -->
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
 
       <nav id="navbar" class="navbar order-last order-lg-0 margin" > 
         <ul >
-          <li class="dropdown notifications-dropdown" style="margin-right: 0px;">
+          <!-- <li class="dropdown notifications-dropdown" style="margin-right: 0px;">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <span style="font-size: 20px; color: #F5A623;">
                 <i class="fas fa-bell"></i>
@@ -53,7 +53,7 @@
             
             
             
-          </li>
+          </li> -->
             <li class="dropdown" style="margin-right: 0px;">
                 <a style="margin-left: 30px;"><span>{{doctor?.username}}
                     <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{doctor?.photo}}" style="border-radius: 50%;overflow: hidden;width: 40px;height: 40px;" alt="Image">
@@ -61,6 +61,37 @@
                 <ul>
                   <li><a routerLink="/doc/home/myProfile">Profile</a></li>
                   <li><a style="cursor: pointer;" (click)="logout()">Logout</a></li>
+                  <li class="dropdown notifications-dropdown">
+                    <a style="text-decoration: none;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                       Notifications <i class="fa fa-bell"></i><span style="color:red">{{number}}</span>
+                    </a>
+                    <ul class="dropdown-menu-left" >
+                      <li *ngIf="number==0">
+                        <a class="notification-item">
+                          <div class="notification-icon">
+                            <i class="fa fa-envelope"></i>
+                          </div>
+                          <div class="notification-content">
+                            <p class="notification-message">No notifications yet</p>
+                          </div>
+                        </a>
+                      </li>
+                      <li *ngFor="let not of notifs" >
+                        <a class="notification-item" >
+                          <div class="notification-icon">
+                            <i class="fa fa-envelope"></i>
+                          </div>
+                          <div class="notification-content">
+                            <p class="notification-message">{{not.content}}</p>
+                            <span class="notification-time">{{not.formattedDate}}</span>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                    
+                    
+                    
+                  </li>
           
                   
                   

@@ -32,6 +32,9 @@ import { AddMedicalFieldComponent } from './components/add-medical-field/add-med
 import { MedicalFieldsListComponent } from './components/medical-fields-list/medical-fields-list.component';
 import { ComplaintsComponent } from './components/complaints/complaints.component';
 // import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -63,6 +66,8 @@ import { ComplaintsComponent } from './components/complaints/complaints.componen
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
     // NgbModalModule,
   ],
   providers: [],

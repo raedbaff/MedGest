@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-secretary-login',
@@ -12,7 +13,11 @@ import Swal from 'sweetalert2';
 export class SecretaryLoginComponent implements OnInit {
   form!:FormGroup
 
-  constructor(private auth:AuthService,private router:Router,private formbuilder:FormBuilder) { }
+  constructor(private auth:AuthService,
+    private router:Router,
+    private formbuilder:FormBuilder,
+    private spinner:NgxSpinnerService
+    ) { }
 
   ngOnInit(): void {
     this.form=this.formbuilder.group({
@@ -21,6 +26,7 @@ export class SecretaryLoginComponent implements OnInit {
     })
   }
   onsubmit(){
+    this.spinner.show()
     const Sec=this.form.value
     this.auth.SecretaryLogin(Sec).subscribe((response:any)=>{
       const roles = response.roles;
@@ -46,6 +52,8 @@ export class SecretaryLoginComponent implements OnInit {
           text: 'you do not have the right to access admin dashboard',
         })
       }
+    }).add(()=>{
+      this.spinner.hide()
     })
   }
 

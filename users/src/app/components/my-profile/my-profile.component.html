@@ -207,33 +207,40 @@
                 </div>
             </form>           
         </div>
+        <section class="billsSection">
+            <div  id="my-bills" class="section-title" style="margin-top: 100px;">
+                <h2>My bills</h2>
+              </div>
+              <div class="tableContainer">
+                <table id="example" class="display table table-hover table-condensed" style="margin-bottom: 100px;">
+                    <thead>
+                        <tr>
+                            <th>Bill No</th>
+                            <th>Doctor</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Discount</th>
+                            <th>Tax</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                
+                    <tbody *ngFor="let bill of bills">
+                        <tr>
+                            <td>{{bill.id}}</td>
+                            <td>{{bill.doc.username}}</td>
+                            <td>{{bill.date}}</td>
+                            <td>{{bill.description}}</td>
+                            <td> <span style="font-weight: bold;">{{bill.amount}} DT</span></td>
+                            <td> <span style="font-weight: bold;">{{bill.discount}} DT</span></td>
+                            <td> <span style="font-weight: bold;">{{bill.tax}} DT</span></td>
+                            <td> <span style="font-weight: bold;">{{bill.total}} DT</span></td>
+                    </tbody>
+                </table>
+
+              </div>
+              
+
+        </section>
         
-        <div  id="my-bills" class="section-title" style="margin-top: 100px;">
-            <h2>My bills</h2>
-          </div>
-          <table id="example" class="display table table-hover table-condensed" style="margin-bottom: 100px;">
-            <thead>
-                <tr>
-                    <th>Bill No</th>
-                    <th>Doctor</th>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Discount</th>
-                    <th>Tax</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-        
-            <tbody *ngFor="let bill of bills">
-                <tr>
-                    <td>{{bill.id}}</td>
-                    <td>{{bill.doc.username}}</td>
-                    <td>{{bill.date}}</td>
-                    <td>{{bill.description}}</td>
-                    <td>{{bill.amount}}</td>
-                    <td>{{bill.discount}}</td>
-                    <td>{{bill.tax}}</td>
-                    <td>{{bill.total}}</td>
-            </tbody>
-        </table>

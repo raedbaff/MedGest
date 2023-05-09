@@ -13,7 +13,7 @@
   <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;">Here are you confirmed appointements</h4>
 </div>
 
-<table id="example" class="display table table-hover table-condensed">
+<table *ngIf="rv?.length>0" id="example" class="display table table-hover table-condensed">
   <thead>
     <tr>
       <th>Appointment No</th>
@@ -45,3 +45,9 @@
     </tr>
   </tbody>
 </table>
+<div *ngIf="rv?.length==0">
+  <h2 style="text-align: center; font-size: 80px;font-weight: bold;letter-spacing: 2px; font-family: fantasy;" >No appointements yet</h2>
+  <br>
+  <h5 style="text-align: center;color: red;">Please wait for your Secretary to confirm your rendezvous</h5>
+</div>
+

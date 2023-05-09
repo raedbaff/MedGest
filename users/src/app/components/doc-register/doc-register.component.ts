@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DoctorAuthService } from 'src/app/services/doctor-auth.service';
 import { DoctorService } from 'src/app/services/doctor.service';
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-doc-register',
@@ -17,7 +18,10 @@ export class DocRegisterComponent implements OnInit {
   id:any
   doctor:any
 
-  constructor(private doctorService:DoctorService,private doctorAuth:DoctorAuthService,private router:Router,private formBuilder: FormBuilder) { }
+  constructor(private doctorService:DoctorService,private doctorAuth:DoctorAuthService,
+    private router:Router,
+    private formBuilder: FormBuilder,
+    private spinner:NgxSpinnerService) { }
 
   ngOnInit(): void {this.form = this.formBuilder.group({
     username: ['', Validators.required],
@@ -37,6 +41,7 @@ export class DocRegisterComponent implements OnInit {
 
   }
   onsubmit(){
+    this.spinner.show()
     const Doctor=this.form.value
     this.doctorAuth.register(this.file,Doctor).subscribe((data:any)=>{
       
@@ -46,6 +51,8 @@ export class DocRegisterComponent implements OnInit {
         title:"successfully registered",
         text:"Please wait for admin confirmation before login in"
       })
+    }).add(()=>{
+      this.spinner.hide()
     })
   }
   getalldomains(){

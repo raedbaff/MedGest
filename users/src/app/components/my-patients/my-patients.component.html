@@ -136,7 +136,7 @@
     
     
   </div>
-	<div class="patient-container">
+	<div *ngIf="docs?.length>0" class="patient-container">
         <div class="patient" *ngFor="let doc of docs">
           <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{doc.photo}}" alt="Patient 1">
           <div class="patient-info">
@@ -148,6 +148,11 @@
             <button  (click)="openMedicalFile(doc.id)" style="border: none;color: darkgreen;font-weight: bold;margin-top: 5px;">View Medical File</button>
           </div>
         </div>
+        
+        <!-- Add more patient divs as needed -->
+      </div>
+      <div *ngIf="docs?.length==0" class="patient-container">
+        <h2 style="font-weight: bold;font-size: 50px;">No patients yet</h2>
         
         <!-- Add more patient divs as needed -->
       </div>

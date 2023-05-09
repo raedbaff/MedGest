@@ -1,1 +1,87 @@
-<p>sec-patient-profile works!</p>
+
+
+	<title>PROFILE</title>
+	
+
+<body>
+    <div *ngIf="editmodal"  class="modal">
+		<div class="modal-content">
+		  <h2>Edit Profile</h2>
+		  <button style="background-color: red;padding-left: auto; margin-left: 85%; margin-bottom: 5px;color: white; width: fit-content;"(click)="close()">close</button>
+		  <form [formGroup]="editform" (ngSubmit)="editProfile()">
+			<div class="form-group">
+			  <label for="name">Name</label>
+			  <input formControlName="username" type="text" id="name" name="name" placeholder="Enter your name" required>
+			</div>
+			<div class="form-group">
+			  <label for="email">Email</label>
+			  <input formControlName="email" type="email" id="email" name="email" placeholder="Enter your email" required>
+			</div>
+			<div class="form-group">
+			  <label for="age">Age</label>
+			  <input formControlName="age" type="number" id="age" name="age" placeholder="Enter your age" required>
+			</div>
+            <div class="form-group">
+                <label for="experience">experience</label>
+                <input formControlName="experience" type="number" id="experience" name="experience" placeholder="Enter your experience" required>
+              </div>
+            
+			
+			  
+			<button class="bub"type="submit">Submit</button>
+		  </form>
+		  
+		</div>
+		
+	  </div>
+      <div *ngIf="editphoto"  class="modal">
+		<div class="modal-content">
+		  <h2>Edit Photo</h2>
+		  <button style="background-color: red;padding-left: auto; margin-left: 85%; margin-bottom: 5px;color: white; width: fit-content;"(click)="close()">close</button>
+		  <form  method="post">
+			<div class="form-group">
+			  <label for="photo">Photo</label>
+			  <input  type="file" id="photo" name="photo" (change)="onFileSelected($event)">
+			</div>
+			
+			
+            
+            
+			
+			  
+			<button class="bub" (click)="ChangePhoto()">Submit</button>
+		  </form>
+		  
+		</div>
+		
+	  </div>
+	<header class="header">
+		<h1>PROFILE</h1>
+	</header>
+    <button class="buttonedit" (click)="open()">edit</button>
+	<div class="container">
+		<a style="cursor: pointer;" (click)="openphotoChange()" >
+            <img class="profile-img" src="http://127.0.0.1:8088/api/auth/Doctor/files/{{sec?.photo}}" alt="Profile photo">
+          </a>
+          
+		<div class="profile-name">{{sec?.username}} <strong style="margin-left: 10px;">{{sec?.age}} years old</strong></div>
+		<div class="profile-email">{{sec?.email}}</div>
+        
+		<div class="profile-experience">Years of Experience: {{sec?.experience}}</div>
+		<div class="office-container">
+			
+				<img class="office-img" src="http://127.0.0.1:8088/api/auth/Doctor/files/{{sec?.cabinet?.photo}}" alt="Medical office photo">
+                <div style="display: flex;flex-direction: column;">
+                <div class="office-name">Office Name : {{sec?.cabinet?.nomCabinet}}</div>
+				<div class="office-doctor"><span style="font-weight: bold;color: black;">Doctor Name : </span>{{sec?.cabinet?.doctor?.username}}</div>
+				<div class="office-address"><span style="font-weight: bold;color: black;">Adresse : </span>{{sec?.cabinet?.adresseCabinet}}</div>
+
+                
+				
+			</div>
+			
+		</div>
+	</div>
+</body>
+
+
