@@ -26,7 +26,7 @@ public class Patient extends User{
 
     private String profession;
     @ManyToMany
-    @JsonIncludeProperties({"id","username"})
+    @JsonIncludeProperties({"id","username","photo"})
     private List<Doctor> mydocs;
     @OneToMany(mappedBy = "author",cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIncludeProperties("id")

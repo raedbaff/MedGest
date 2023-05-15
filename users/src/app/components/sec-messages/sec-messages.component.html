@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Interface</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      margin-top: 150px;
+    }
+
+    #sidebar {
+      background-color: #333;
+      width: 300px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    #messages {
+      flex: 1;
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: #f5f5f5;
+    }
+
+    /* Styling for the user list */
+    #user-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #user-list li {
+      padding: 10px;
+      background-color: #555;
+      color: #fff;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+    #user-list li img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 5px;
+    }
+
+    #user-list li:hover {
+      background-color: #777;
+    }
+
+    /* Styling for the messaging interface */
+    #message-container {
+  background-color: #fff;
+  
+  height: auto;
+  
+  padding: 10px;
+}
+
+.received {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.sent {
+  background-color: #e6f3ff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.received p,
+.sent p {
+  margin: 0;
+}
+
+.received span,
+.sent span {
+  color: #999;
+  font-size: 12px;
+}
+
+    
+
+
+    #message-input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    /* Additional styling */
+    #message-container p {
+      margin: 0 0 10px;
+    }
+
+    #message-container .sender {
+      color: #555;
+      font-weight: bold;
+    }
+    #send-button {
+      background-color: blue;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      
+      cursor: pointer;
+      
+      
+    }
+
+    #send-button:hover {
+      background-color: darkblue;
+    }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <ul id="user-list" *ngFor="let patient of patients">
+      <li (click)="getMsg(patient.id)"> <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{patient.photo}}"> {{patient.username}}</li>
+      
+      <!-- Add more user list items as needed -->
+    </ul>
+  </div>
+  <div id="messages" >
+    <div id="message-container" *ngFor="let msg of msg">
+      <!-- Display messages here -->
+      
+      <div class="received" *ngIf="msg.sender.username==pat?.username">
+        <p >{{msg.content}}</p>
+        <span >{{msg.timestamp}}</span>
+      </div>
+      <div class="sent" *ngIf="msg.sender.username==sec?.username">
+        <p >{{msg.content}}</p>
+        <span >{{msg.timestamp}}</span>
+      </div>
+    </div>
+    <form [formGroup]="messageform" (ngSubmit)="sendmessage(pat.id)" method="post">
+        <div style="display: flex;flex-direction: row;">
+            <input type="text" formControlName="content" id="message-input" placeholder="Type your message"> <button type="submit" id="send-button">send</button>
+    
+        </div>
+    </form>
+    
+    
+  </div>
+</body>
+</html>

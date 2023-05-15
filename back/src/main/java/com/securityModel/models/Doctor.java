@@ -43,7 +43,7 @@ public class Doctor extends User {
 
 
     @OneToOne(mappedBy = "doctor")
-    @JsonIncludeProperties("nomCabinet")
+    @JsonIncludeProperties({"nomCabinet","secretary"})
     private Cabinet cabinetDoctor;
     @OneToMany(mappedBy = "doctor")
     @JsonIgnore

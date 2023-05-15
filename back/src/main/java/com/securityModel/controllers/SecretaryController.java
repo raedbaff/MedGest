@@ -109,5 +109,9 @@ public class SecretaryController {
         sec.setPhoto(filename);
         secretaryRepository.save(sec);
     }
+    @GetMapping("/all")
+    public List<Secretary>GetAll(){
+        return secretaryRepository.findAll();
+    }
 
 }

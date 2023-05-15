@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient,HttpHeaders} from '@angular/common/http'
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -19,6 +20,9 @@ export class SecretaryService {
     formdata.append("experience",Secretary.experience)
     
     return this.http.put(`http://127.0.0.1:8088/api/auth/Secretary/edit/${id}`,formdata)
+  }
+  GetAll():Observable<any>{
+    return this.http.get(`http://127.0.0.1:8088/api/auth/Secretary/all`)
   }
   ChangePhoto(file:File,id:number){
     

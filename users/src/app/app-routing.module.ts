@@ -34,6 +34,8 @@ import { SecretaryLoginComponent } from './components/secretary-login/secretary-
 import { SecLayoutComponent } from './components/sec-layout/sec-layout.component';
 import { PatientListComponent } from './components/patient-list/patient-list.component';
 import { SecPatientProfileComponent } from './components/sec-patient-profile/sec-patient-profile.component';
+import { SecMessagesComponent } from './components/sec-messages/sec-messages.component';
+import { PatientMessagesComponent } from './components/patient-messages/patient-messages.component';
 
 const routes: Routes = [
   {path:"",component:ChooseComponent},
@@ -60,7 +62,8 @@ const routes: Routes = [
   component:SecretaryHomeComponent,children:[
     {path:"",component:SecLayoutComponent},
     {path:"patientsList",component:PatientListComponent},
-    {path:"patientProfile",component:SecPatientProfileComponent}
+    {path:"patientProfile",component:SecPatientProfileComponent},
+    {path:"messages",component:SecMessagesComponent}
     
   ]},
   {path:"home",
@@ -78,7 +81,8 @@ const routes: Routes = [
     {path:"cabinets",component:CabinetsComponent},
     {path:"edit/:id",component:EditProfileModalComponent},
     {path:"message/:id/:id",component:MessageComponent},
-    {path:"community",component:PostsComponent}
+    {path:"community",component:PostsComponent},
+    {path:"myMessages",component:PatientMessagesComponent}
     
 
   ]}

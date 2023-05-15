@@ -22,16 +22,16 @@ export class HomeComponent implements OnInit {
   }
   getPatientNotifs(){
     this.patientService.getpatientnotifications(this.token!).subscribe((data:any)=>{
-      console.log("the token",+this.token!)
+      
       this.notifications=data;
-      console.log("notification",+this.notifications[0].content)
+      
       this.notificationNumber=data.length
     })
   }
   getPatinetinfo(){
     return this.authService.getpatient(this.id).subscribe((data:any)=>{
       this.patient=data
-      console.log("your user info is this "+this.patient.photo)
+      
 
     })
   }

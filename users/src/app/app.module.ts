@@ -49,6 +49,8 @@ import { PatientListComponent } from './components/patient-list/patient-list.com
 import { SecPatientProfileComponent } from './components/sec-patient-profile/sec-patient-profile.component'
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SecMessagesComponent } from './components/sec-messages/sec-messages.component';
+import { PatientMessagesComponent } from './components/patient-messages/patient-messages.component';
 
 
 
@@ -93,7 +95,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SecLayoutComponent,
     SecHeaderComponent,
     PatientListComponent,
-    SecPatientProfileComponent
+    SecPatientProfileComponent,
+    SecMessagesComponent,
+    PatientMessagesComponent
     
     
     

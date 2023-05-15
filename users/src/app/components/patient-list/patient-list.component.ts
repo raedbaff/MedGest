@@ -8,6 +8,7 @@ import { Subject, debounceTime } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-patient-list',
   templateUrl: './patient-list.component.html',
@@ -35,13 +36,15 @@ export class PatientListComponent implements OnInit {
   filteredpatientRDV:any
   medialbillform!:FormGroup
   newMessageSubject = new Subject<any>();
+  
 
   constructor(private doctorService:DoctorService,
     private secretaryService:SecretaryService,
     private formbuilder:FormBuilder,
     private patientService:PatientService,
     private datepipe:DatePipe,
-    private AuthService:AuthService
+    private AuthService:AuthService,
+    
 
     ) { }
 
@@ -92,7 +95,7 @@ export class PatientListComponent implements OnInit {
   }
   sendmessage(id:number){
     const message=this.messageform.value
-    this.patientService.sendmessage(this.id,this.id2,message).subscribe((data:any)=>{
+    this.patientService.sendmessage(this.id,id,message).subscribe((data:any)=>{
       this.getnewmessages(id)
       this.messageform.reset()
       
