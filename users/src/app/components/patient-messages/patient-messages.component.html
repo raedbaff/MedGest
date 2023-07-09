@@ -131,13 +131,7 @@
       
       <!-- Add more user list items as needed -->
     </ul>
-    <h3 style="text-align: center;color: white;font-family: cursive;font-weight: bold;">Secretaries</h3>
-    <ul id="user-list" *ngFor="let sec of secretaries">
-      
-      <li (click)="getMsg(sec.id)"> <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{sec.photo}}"> {{sec.username}}</li>
-      
-      <!-- Add more user list items as needed -->
-    </ul>
+   
     
   </div>
   <div id="messages" >

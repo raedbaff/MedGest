@@ -89,22 +89,22 @@
 <body>
   <div *ngFor="let files of medicalfile">
     <div class="medical-file" *ngIf="files" >
-      <img class="medicalImage"src="http://127.0.0.1:8088/api/auth/Doctor/files/{{files.patient.photo}}">
+      <img class="medicalImage"src="http://127.0.0.1:8088/api/auth/Doctor/files/{{files?.patient?.photo}}">
       <h1>Medical File for {{files.patient.username}}</h1>
       <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;color: green;font-weight: bold;">Created By Doctor : {{files.doctor.username}}</h1>
       
       <h2>Medical History:</h2>
-      <p>{{files.medicalHistory}}</p>
+      <p>{{files?.medicalHistory}}</p>
       <h2>Allergies:</h2>
-      <p>{{files.allergies}}</p>
+      <p>{{files?.allergies}}</p>
       <h2>Diagnoses:</h2>
-      <p>{{files.diagnoses}}</p>
+      <p>{{files?.diagnoses}}</p>
       <h2>Diagnoses Results:</h2>
-      <p>{{files.diagnosesResults}}</p>
+      <p>{{files?.diagnosesResults}}</p>
       <h2>Progress Notes:</h2>
-      <p>{{files.progressNotes}}</p>
+      <p>{{files?.progressNotes}}</p>
       <h2>Next Steps:</h2>
-      <p>{{files.nextSteps}}</p>
+      <p>{{files?.nextSteps}}</p>
       <button class="print-btn" onclick="window.print()">
         <img src="assets/printer-with-paper-illustration_138676-2396.webp" alt="Print">
         Print
@@ -112,7 +112,7 @@
     </div>
   </div>
 	
-      <div class="medical-file" *ngIf="medicalfile.length==0">
+      <div class="medical-file" *ngIf="medicalfile?.length==0">
         Please Wait for your Doctor to Create your Medical File,Request an appointement if you still don't have a doctor
       </div>
       

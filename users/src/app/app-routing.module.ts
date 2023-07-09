@@ -45,8 +45,8 @@ const routes: Routes = [
   {path:"doc/Register",component:DocRegisterComponent},
   {path:"doc/login",component:DocLoginComponent},
   {path:"sec/login",component:SecretaryLoginComponent},
+
   {path:"doc/home",
-  
   canActivate:[GuardGuard],
   component:DocHomeComponent,children:[
     {path:"",component:DocLayoutComponent},

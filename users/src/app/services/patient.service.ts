@@ -92,6 +92,9 @@ export class PatientService {
   getposts(){
     return this.http.get(`http://127.0.0.1:8088/Post/all`)
   }
+  getPost(id:number){
+    return this.http.get(`http://127.0.0.1:8088/Post/${id}`)
+  }
   deletepost(id:number):Observable<any>{
     return this.http.delete(`http://127.0.0.1:8088/Post/${id}`)
   }

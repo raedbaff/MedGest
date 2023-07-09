@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DoctorAuthService } from 'src/app/services/doctor-auth.service';
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from "ngx-spinner";
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-doc-login',
@@ -12,6 +13,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class DocLoginComponent implements OnInit {
   form!:FormGroup
+  errorMessagee!: string;
 
 
   constructor(private doctorService:DoctorAuthService,private router:Router,
@@ -26,7 +28,22 @@ export class DocLoginComponent implements OnInit {
   onsubmit(){
     this.spinner.show()
     const Doctor=this.form.value
-    this.doctorService.login(Doctor).subscribe((response:any)=>{
+    this.doctorService.login(Doctor).pipe(
+      catchError((error) => {
+        
+        let errorMessage = 'An error occurred. Please try again later.';
+        if (error.status === 401) {
+          this.spinner.hide()
+          errorMessage = 'Incorrect username or password. Please try again.';
+        } else if (error.status === 403) {
+          this.spinner.hide()
+          errorMessage = 'Your account is not confirmed. Please confirm your account and try again.';
+        }
+        this.errorMessagee = errorMessage;
+        console.log("the error is "+errorMessage);
+        return throwError(() => new Error(errorMessage));
+      })
+    ).subscribe((response:any)=>{
       const roles = response.roles;
       if (roles.includes('ROLE_DOCTOR')) {
         // Save user data and redirect to home page

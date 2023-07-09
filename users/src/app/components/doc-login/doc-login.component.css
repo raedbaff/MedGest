@@ -28,6 +28,7 @@ button{
 .switch-link:hover {
     color: #0056b3;
 }
+
   
 
   .form-container {
@@ -80,6 +81,7 @@ input[type="submit"]:hover {
 	left: 0;
 	margin: 20px;
 	color: red;
+	
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 35px;

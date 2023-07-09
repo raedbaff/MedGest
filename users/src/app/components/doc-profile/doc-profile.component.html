@@ -12,13 +12,13 @@
           <h3 class="username">{{zeDoc?.username}}</h3>
         </div>
         <div class="messages" *ngFor="let msg of newmsg">
-          <div class="message received" *ngIf="msg.sender.username==pat">
-            <p class="content">{{msg.content}}</p>
-            <span class="timestamp">{{msg.timestamp}}</span>
+          <div class="message received" *ngIf="msg?.sender?.username==pat">
+            <p class="content">{{msg?.content}}</p>
+            <span class="timestamp">{{msg?.timestamp}}</span>
           </div>
-          <div class="message sent" *ngIf="msg.sender.username==zeDoc?.username">
-            <p class="content">{{msg.content}}</p>
-            <span class="timestamp2">{{msg.timestamp}}</span>
+          <div class="message sent" *ngIf="msg?.sender?.username==zeDoc?.username">
+            <p class="content">{{msg?.content}}</p>
+            <span class="timestamp2">{{msg?.timestamp}}</span>
           </div>
           <!-- more messages -->
         </div>
@@ -39,10 +39,10 @@
                 <div class="about-text go-to">
                     <h3 class="dark-color">About Me</h3> 
                     <!-- <a  routerLink="/home/message/{{userid}}/{{zeDoc.id}}" class="btn btn-primary" style="border-radius: 50px;margin-top: 20px; margin-bottom: 20px; size: 30px;">Message</a> -->
-                    <a class="btn btn-primary" style="border-radius: 50px;color:white;border:none;margin-top: 20px; margin-bottom: 20px; size: 30px;" (click)="openMessageModal(zeDoc.id)">Send message</a>
-                    <h6 class="theme-color lead">A Lead {{zeDoc.domainMedical.name}} Doctor based in {{zeDoc.adresse}}</h6>
+                    <a class="btn btn-primary" style="border-radius: 50px;color:white;border:none;margin-top: 20px; margin-bottom: 20px; size: 30px;" (click)="openMessageModal(zeDoc?.id)">Send message</a>
+                    <h6 class="theme-color lead">A Lead {{zeDoc?.domainMedical?.name}} Doctor based in {{zeDoc?.adresse}}</h6>
                     <p style="font-weight:bold; font-family: 'Helvetica Neue', sans-serif; margin: 20px 0; padding: 10px; color: #333; background-color: #f7f7f7; animation: pulse 1s infinite;">
-                      {{zeDoc.description}}
+                      {{zeDoc?.description}}
                     </p>
                   
                     <style>
@@ -69,18 +69,18 @@
                             
                             <div class="media">
                                 <label>Age</label>
-                                <p>{{zeDoc.age}} Yr</p>
+                                <p>{{zeDoc?.age}} Yr</p>
                             </div>
                             
                             <div class="media">
                                 <label>Address</label>
-                                <p>{{zeDoc.adresse}}</p>
+                                <p>{{zeDoc?.adresse}}</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="media">
                                 <label>E-mail</label>
-                                <p>{{zeDoc.email}}</p>
+                                <p>{{zeDoc?.email}}</p>
                             </div>
                             <div class="media">
                                 <label>Phone</label>
@@ -97,7 +97,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="about-avatar">
-                    <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{zeDoc.photo}}" title="" alt="">
+                    <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{zeDoc?.photo}}" title="" alt="">
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
             <div class="row">
                 <div class="col-6 col-lg-3">
                     <div class="count-data text-center">
-                        <h6 class="count h2" data-to="500" data-speed="500">{{zeDoc.myPatients.length}}</h6>
+                        <h6 class="count h2" data-to="500" data-speed="500">{{zeDoc?.myPatients?.length}}</h6>
                         <p class="m-0px font-w-600">Happy Patients</p>
                     </div>
                 </div>
@@ -160,8 +160,8 @@
 
       <div class="section-title">
         <h2>Patients Feedback</h2>
-        <p>What do Patients say about Dr:{{zeDoc.username}}</p>
-        <button style="margin-top: 20px; border-radius: 5px;color: white;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;background-color: darkblue;height: 50;width: 100px;" *ngIf="docratings.length > 0 && !showMore" (click)="showAllRatings()">Show all</button>
+        <p>What do Patients say about Dr:{{zeDoc?.username}}</p>
+        <button style="margin-top: 20px; border-radius: 5px;color: white;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;background-color: darkblue;height: 50;width: 100px;" *ngIf="docratings?.length > 0 && !showMore" (click)="showAllRatings()">Show all</button>
         
           
       </div>
@@ -181,33 +181,33 @@
                 {{rate.patientNotes}}
                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
               </p>
-              <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{rate.patient.photo}}" class="testimonial-img" alt="">
-              <h3>{{rate.patient.username}}</h3>
+              <img src="http://127.0.0.1:8088/api/auth/Doctor/files/{{rate?.patient?.photo}}" class="testimonial-img" alt="">
+              <h3>{{rate?.patient?.username}}</h3>
               <h4>Ceo &amp; Founder</h4>
               <div class="rating">
-                <div class="stars" *ngIf="rate.rating==1">
+                <div class="stars" *ngIf="rate?.rating==1">
                   <i class="fa fa-star" style="color:orange;margin-left: 20px;"  ></i>
 
                 </div>
-                <div class="stars" *ngIf="rate.rating==2">
+                <div class="stars" *ngIf="rate?.rating==2">
                   <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
                   <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
 
                 </div>
-                <div class="stars" *ngIf="rate.rating==3">
-                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
-                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
-                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
-
-                </div>
-                <div class="stars" *ngIf="rate.rating==4">
-                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+                <div class="stars" *ngIf="rate?.rating==3">
                   <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
                   <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
                   <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
 
                 </div>
-                <div class="stars" *ngIf="rate.rating==5">
+                <div class="stars" *ngIf="rate?.rating==4">
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+                  <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
+
+                </div>
+                <div class="stars" *ngIf="rate?.rating==5">
                   <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
                   <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>
                   <i class="fa fa-star" style="color:orange;margin-left: 20px;"></i>

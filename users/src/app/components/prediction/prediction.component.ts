@@ -46,7 +46,7 @@ export class PredictionComponent implements OnInit {
     event.preventDefault();
     return this.DoctorService.predict(this.file).subscribe((data: any) => {
         this.result = data.result
-        console.log("the resut is "+this.result.result)
+        
     });
 }
 

@@ -91,8 +91,7 @@ export class DocProfileComponent implements OnInit,AfterViewInit  {
       })
     }
   ngAfterViewInit() {
-    console.log('ngAfterViewInit() called.');
-  console.log('this.swiperWrapper.nativeElement: ', this.swiperWrapper.nativeElement);
+    
     const swiperElement = document.querySelector('.swiper-wrapper');
     if (swiperElement){
       const swiper = new Swiper(this.swiperWrapper.nativeElement, {

@@ -17,7 +17,7 @@
         </div>
         <div class="row">
           <div class="col-md-4 form-group mt-3">
-            <input type="date" formControlName="appointmentDate" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" required>
+            <input type="date"[min]="minDate" formControlName="appointmentDate" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" required>
           </div>
           <div class="col-md-4 form-group mt-3">
             <input type="time" formControlName="time" name="time" class="form-control" id="time" placeholder="Appointment Time" required>

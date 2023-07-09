@@ -30,6 +30,7 @@ export class CancerPredictionComponent implements OnInit {
       $(modal).modal('hide');
     });
   }
+  
   onFileSelect(event:any) {
     if (event.target.files.length > 0) {
       this.file = event.target.files[0];
@@ -44,7 +45,7 @@ export class CancerPredictionComponent implements OnInit {
     event.preventDefault();
     return this.doctorService.predictcancer(this.file).subscribe((data: any) => {
         this.result = data.result
-        console.log("the resut is "+this.result.result)
+        
     });
 }
 

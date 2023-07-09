@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PatientService } from 'src/app/services/patient.service';
 import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -23,6 +24,8 @@ export class PostsComponent implements OnInit {
   name:any
   connecteduserid:any
   likelist:any
+  post:any
+  
   
 
  
@@ -46,7 +49,8 @@ export class PostsComponent implements OnInit {
       
     })
     this.getallposts()
-    this.sender=localStorage.getItem("token")
+    
+    
     
     
 
@@ -61,16 +65,14 @@ export class PostsComponent implements OnInit {
       this.posts=data.filter((post:any)=>post.accepted==true)
       this.posts.forEach((post:any)=>{
         post.timestamp=this.datePipe.transform(post.timestamp,"EEEE/MMMM HH:mm")
-        
-        
-        
-        
       })
+      
       
 
     })
 
   }
+  
   
   onFileSelect(event:any) {
     if (event.target.files.length > 0) {
@@ -102,11 +104,19 @@ export class PostsComponent implements OnInit {
       const likeIndex = likelist.findIndex((like: any) => like.patient.id == this.connecteduserid);
       const likeId = likelist[likeIndex].id;
       this.patientService.deleteLike(likeId).subscribe(() => {
-        this.getallposts();
+        this.patientService.getPost(postid).subscribe((newpost:any)=>{
+          const index=this.posts.findIndex((post:any)=>post.id===postid)
+        this.posts[index]=newpost
+        })
       });
     } else {
+      
       this.patientService.likePost(postid, this.patientToken).subscribe(() => {
-        this.getallposts();
+        this.patientService.getPost(postid).subscribe((newpost:any)=>{
+          const index=this.posts.findIndex((post:any)=>post.id===postid)
+        this.posts[index]=newpost
+        })
+        
       });
     }
   });
@@ -138,7 +148,7 @@ createcomment(postid: number) {
   }
   
   // If no inappropriate words found, post the comment
-  this.patientService.postcomment(postid, message, this.sender).subscribe((data: any) => {
+  this.patientService.postcomment(postid, message, this.patientToken).subscribe((data: any) => {
     
     this.getcommentsofAPost(postid);
     this.getallposts();

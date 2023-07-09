@@ -15,6 +15,7 @@ export class DocMyProfileComponent implements OnInit {
   cabinet:any
   editmodal!:boolean
   editform!:FormGroup
+  bills!:any
   
 
   constructor(private doctorService:DoctorService,private formbuilder:FormBuilder) { }
@@ -31,10 +32,13 @@ export class DocMyProfileComponent implements OnInit {
       description:['',Validators.required],
       email:['',Validators.required],
     })
+    
   }
+  
   getdoc(){
     this.doctorService.getdoctorinfo(this.id).subscribe((data:any)=>{
       this.doc=data
+      this.bills=data.doctorBills
       
     })
   }

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { PatientService } from 'src/app/services/patient.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-appointement',
   templateUrl: './appointement.component.html',
@@ -20,6 +21,7 @@ export class AppointementComponent implements OnInit {
   docs:any
   dateInput:any
   doctorAvailability:any
+  minDate!:String
  
   
 
@@ -28,6 +30,9 @@ export class AppointementComponent implements OnInit {
     
 
   ngOnInit(): void {
+    const today=new Date()
+    this.minDate=today.toISOString().split('T')[0]
+    console.log("here is your min date"+this.minDate)
     
     this.getalldocs()
     this.user=localStorage.getItem("token")
@@ -106,7 +111,7 @@ export class AppointementComponent implements OnInit {
     getalldocs(){
       return this.patientService.getalldoc().subscribe((data:any)=>{
         this.docs=data
-        console.log("thte doc id is "+data[6].id)
+        
       },
       error=>{
         console.log(error)

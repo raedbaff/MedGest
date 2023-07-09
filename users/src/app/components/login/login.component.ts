@@ -35,10 +35,13 @@ export class LoginComponent implements OnInit {
     
     this.loginService.login(this.form.value).pipe(
       catchError((error) => {
+        
         let errorMessage = 'An error occurred. Please try again later.';
         if (error.status === 401) {
+          this.spinner.hide()
           errorMessage = 'Incorrect username or password. Please try again.';
         } else if (error.status === 403) {
+          this.spinner.hide()
           errorMessage = 'Your account is not confirmed. Please confirm your account and try again.';
         }
         this.errorMessagee = errorMessage;

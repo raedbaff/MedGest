@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from "ngx-spinner";
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-secretary-login',
@@ -12,6 +13,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class SecretaryLoginComponent implements OnInit {
   form!:FormGroup
+  errorMessagee!: string;
 
   constructor(private auth:AuthService,
     private router:Router,
@@ -28,7 +30,22 @@ export class SecretaryLoginComponent implements OnInit {
   onsubmit(){
     this.spinner.show()
     const Sec=this.form.value
-    this.auth.SecretaryLogin(Sec).subscribe((response:any)=>{
+    this.auth.SecretaryLogin(Sec).pipe(
+      catchError((error) => {
+        
+        let errorMessage = 'An error occurred. Please try again later.';
+        if (error.status === 401) {
+          this.spinner.hide()
+          errorMessage = 'Incorrect username or password. Please try again.';
+        } else if (error.status === 403) {
+          this.spinner.hide()
+          errorMessage = 'Your account is not confirmed. Please confirm your account and try again.';
+        }
+        this.errorMessagee = errorMessage;
+        console.log("the error is "+errorMessage);
+        return throwError(() => new Error(errorMessage));
+      })
+    ).subscribe((response:any)=>{
       const roles = response.roles;
       if (roles.includes('ROLE_SECRETARY')) {
         // Save user data and redirect to home page
